@@ -1,22 +1,18 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 function App() {
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
 
-  function handleClick() {
-    setValue((v) => {
-      return v + 1;
-    });
-    setValue((v) => {
-      return v + 1;
-    });
-  }
+  // function handleClick() {
+  //   setValue((v) => {
+  //     return v + 1;
+  //   });
+  //   setValue((v) => {
+  //     return v + 1;
+  //   });
+  // }
 
-  return (
-    <div>
-      <button onClick={handleClick}>{value}</button>
-    </div>
-  );
+  return <h1>Tutaj powstanie CV / portfolio / prezentacja</h1>;
 }
 
 export default App;
