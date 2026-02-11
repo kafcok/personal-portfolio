@@ -12,7 +12,7 @@ function App() {
   //   });
   // }
 
-  return <h1>Tutaj powstanie CV / portfolio / prezentacja</h1>;
+  return <h1>test</h1>;
 }
 
 export default App;
