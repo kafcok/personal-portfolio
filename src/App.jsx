@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <h1>test</h1>
-      <button onClick={handleClick}>{value}</button>
+      <button onClick={handleClick}>{value}test</button>
     </>
   );
 }
