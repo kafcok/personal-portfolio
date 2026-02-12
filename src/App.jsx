@@ -2,7 +2,8 @@
 
 function App() {
   // const [value, setValue] = useState(0);
-
+  const velue = 2;
+  console.log(velue);
   // function handleClick() {
   //   setValue((v) => {
   //     return v + 1;
