@@ -11,4 +11,11 @@ export default defineConfig({
       emitWarning: true,
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "src/variables.scss" as *;`,
+      },
+    },
+  },
 });

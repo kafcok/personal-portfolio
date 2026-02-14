@@ -1,21 +1,26 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
+// import {
+//   AccessAlarm,
+//   IntegrationInstructionsTwoTone,
+//   ThreeDRotation,
+// } from "@mui/icons-material";
 
 function App() {
-  const [value, setValue] = useState(0);
-
-  function handleClick() {
-    setValue((v) => {
-      return v + 1;
-    });
-    setValue((v) => {
-      return v + 1;
-    });
-  }
+  useEffect(function () {
+    document.getElementById;
+  }, []);
 
   return (
     <>
-      <h1>test</h1>
-      <button onClick={handleClick}>{value}test</button>
+      <div className="min-h-screen flex items-center justify-center bg-background text-foreground transition-colors">
+        <ThemeToggle />
+        <div className="p-10 rounded-2xl shadow-xl">
+          <h1 className="text-4xl font-bold text-indigo-400">
+            Vite + React + SCSS + Tailwind v4 🚀
+          </h1>
+        </div>
+      </div>
     </>
   );
 }
