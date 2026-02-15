@@ -15,6 +15,7 @@ i18n.use(initReactI18next).init({
         set: "Set",
         bio: "bio",
         "error loading": "error loading",
+        history: "history",
       },
     },
     pl: {
@@ -26,6 +27,7 @@ i18n.use(initReactI18next).init({
         set: "Ustaw",
         bio: "'o mnie'",
         "error loading": "błąd ładowania",
+        history: "historia",
       },
     },
   },

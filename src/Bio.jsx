@@ -24,16 +24,15 @@ export default function Bio() {
     retry: false,
   });
 
-  //   useEffect(
-  // function () {
-  //   setBio(data?.data[0]?.description);
-  // },
-  // [data],
-  //   );
-  //   console.log(error);
+  console.log(bio);
 
   async function getBio() {
-    const { data, error } = await supabase.from(q_key).select("*");
+    const { data, error } = await supabase
+      .from(q_key)
+      .select("description")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .single();
     if (error) {
       //   console.log(error);
       throw new Error(`${t("error loading")} ${t(q_key)}`);
@@ -49,5 +48,5 @@ export default function Bio() {
     return <p>{status}</p>;
   }
 
-  return <p>{bio[0]?.description}</p>;
+  return <p>{bio?.description}</p>;
 }

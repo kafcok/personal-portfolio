@@ -1,3 +1,5 @@
+import "tailwindcss";
+
 // import { useEffect, useState } from "react";
 import {
   QueryClient,
@@ -39,14 +41,18 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <div className="min-h-screen flex items-center justify-center bg-background text-foreground transition-colors">
-        <ThemeToggle />
-        <LanguageToggle />
-        <div className="p-10 rounded-2xl shadow-xl">
-          <h1 className="text-4xl font-bold text-indigo-400">
-            Vite + React + SCSS + Tailwind v4 🚀
-          </h1>
-          <Bio />
+      <div className="relative min-h-screen bg-background text-foreground transition-colors">
+        <div className="absolute top-5 right-5">
+          <ThemeToggle />
+          <LanguageToggle />
+        </div>
+        <div className="container">
+          <div className="p-10">
+            <h1 className="text-4xl font-bold text-green-500">
+              {/* Vite + React + SCSS + Tailwind v4 🚀 */}
+            </h1>
+            <Bio />
+          </div>
         </div>
       </div>
     </QueryClientProvider>
