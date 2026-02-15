@@ -2,12 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/work_history_ico.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maciej Kałwa React developer</title>
+    <title>Maciej Kałwa - React developer</title>
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const systemDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        if (stored === "dark" || (!stored && systemDark)) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <script>
+      (function () {
+        const stored = localStorage.getItem("lang");
+        function detect() {
+          const sys = navigator.language.toLowerCase();
+          if (sys.startsWith("pl")) return "pl";
+          return "en";
+        }
+        const lang = stored || detect();
+        document.documentElement.lang = lang;
+      })();
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" class=""></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

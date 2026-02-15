@@ -1,19 +1,138 @@
-// import { useState } from "react";
+import "tailwindcss";
+
+// import { useEffect, useState } from "react";
+import {
+  QueryClient,
+  QueryClientProvider,
+  // useQuery,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { createClient } from "@supabase/supabase-js";
+
+import { useI18nSync } from "./hooks/useI18nSync";
+import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
+import Bio from "./Bio";
+import Box from "./Box";
+import { useTranslation } from "react-i18next";
+
+// const supabase = createClient(
+//   import.meta.env.VITE_SUPABASE_URL,
+//   import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+// );
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 360 * 1000,
+    },
+  },
+});
 
 function App() {
-  // const [value, setValue] = useState(0);
-  const value = 2;
-  console.log(value);
-  // function handleClick() {
-  //   setValue((v) => {
-  //     return v + 1;
-  //   });
-  //   setValue((v) => {
-  //     return v + 1;
-  //   });
-  // }
+  const { t } = useTranslation();
+  useI18nSync();
 
-  return <h1>Tutaj powstanie CV / portfolio / prezentacja</h1>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <div className="relative bg-background text-foreground transition-colors p-5 min-h-max flex flex-col">
+        <div className="top-5 right-5 flex basis-auto grow-0 shrink-0 justify-between items-center pb-5">
+          <h1 className="text-4xl pl-5">Maciej Kałwa. Front-end developer.</h1>
+          <div className="flex gap-5 items-center">
+            <a href="/" className="underline hover:no-underline">
+              👉{t("About this site")}👈
+            </a>
+            <ThemeToggle />
+            <LanguageToggle />
+            <button
+              type="button"
+              className="cursor-pointer underline hover:no-underline"
+            >
+              📃 {t("Get PDF")}
+            </button>
+          </div>
+        </div>
+        <div className="custom-grid">
+          <Box gridArea="bio">
+            <Bio />
+          </Box>
+          <Box gridArea="tech">
+            <p>
+              Aliquip dolore ullamco officia qui dolore nisi exercitation dolore
+              exercitation ullamco consectetur. Tempor Lorem ullamco voluptate
+              ex officia id. Sint eu ea cillum excepteur veniam qui ex ut. Velit
+              nulla adipisicing occaecat cillum. Sit irure cillum deserunt non
+              labore sit esse Lorem id. Est nulla nisi laboris proident. Aute
+              duis et amet ad ut do. Est officia pariatur quis amet adipisicing
+              et pariatur nulla anim occaecat. Commodo deserunt amet proident in
+              dolor ea occaecat laborum proident culpa aliqua excepteur
+              consectetur. Elit exercitation sint ad tempor incididunt.
+              Voluptate aute elit proident est eiusmod mollit sint id
+              exercitation magna tempor. Ut nostrud deserunt aliqua cupidatat
+              veniam dolore. Sunt dolore incididunt velit laborum ea deserunt
+              minim voluptate mollit non sint minim. Qui elit tempor commodo ad
+              velit qui exercitation enim irure amet magna incididunt nulla. Et
+              eiusmod labore deserunt ea anim. Consequat veniam ullamco duis
+              labore fugiat laborum proident incididunt. Ut eiusmod dolore nulla
+              adipisicing esse quis ex labore nostrud do Lorem fugiat. Ipsum eu
+              cupidatat est labore voluptate. Aliqua quis amet aliqua
+              exercitation laboris sint. Non mollit consequat magna adipisicing
+              dolore enim. Magna do do sint consequat laborum.
+            </p>
+          </Box>
+          <Box gridArea="experience">
+            <p>
+              Aliquip dolore ullamco officia qui dolore nisi exercitation dolore
+              exercitation ullamco consectetur. Tempor Lorem ullamco voluptate
+              ex officia id. Sint eu ea cillum excepteur veniam qui ex ut. Velit
+              nulla adipisicing occaecat cillum. Sit irure cillum deserunt non
+              labore sit esse Lorem id. Est nulla nisi laboris proident. Aute
+              duis et amet ad ut do. Est officia pariatur quis amet adipisicing
+              et pariatur nulla anim occaecat. Commodo deserunt amet proident in
+              dolor ea occaecat laborum proident culpa aliqua excepteur
+              consectetur. Elit exercitation sint ad tempor incididunt.
+              Voluptate aute elit proident est eiusmod mollit sint id
+              exercitation magna tempor. Ut nostrud deserunt aliqua cupidatat
+              veniam dolore. Sunt dolore incididunt velit laborum ea deserunt
+              minim voluptate mollit non sint minim. Qui elit tempor commodo ad
+              velit qui exercitation enim irure amet magna incididunt nulla. Et
+              eiusmod labore deserunt ea anim. Consequat veniam ullamco duis
+              labore fugiat laborum proident incididunt. Ut eiusmod dolore nulla
+              adipisicing esse quis ex labore nostrud do Lorem fugiat. Ipsum eu
+              cupidatat est labore voluptate. Aliqua quis amet aliqua
+              exercitation laboris sint. Non mollit consequat magna adipisicing
+              dolore enim. Magna do do sint consequat laborum.
+            </p>
+          </Box>
+          <Box gridArea="contact">
+            <p>Kontakt</p>
+          </Box>
+          <Box gridArea="strengths">
+            <p>Strengths</p>
+          </Box>
+          <Box gridArea="education">
+            <p>
+              Education. Aliquip dolore ullamco officia qui dolore nisi
+              exercitation dolore exercitation ullamco consectetur.
+            </p>
+          </Box>
+          <Box gridArea="language">
+            <p>
+              language. Aliquip dolore ullamco officia qui dolore nisi
+              exercitation dolore exercitation ullamco consectetur.
+            </p>
+          </Box>
+          <Box gridArea="passions">
+            <p>
+              passions. Aliquip dolore ullamco officia qui dolore nisi
+              exercitation dolore exercitation ullamco consectetur.
+            </p>
+          </Box>
+        </div>
+      </div>
+    </QueryClientProvider>
+  );
 }
 
 export default App;
