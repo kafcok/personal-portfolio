@@ -19,7 +19,7 @@ export default function LanguageToggle() {
   return (
     <button
       onClick={toggle}
-      className="px-3 py-2 rounded-lg bg-primary text-white whitespace-nowrap"
+      className="px-3 py-2 rounded-lg bg-primary text-white whitespace-nowrap cursor-pointer"
     >
       {t("set")} {emote}
     </button>

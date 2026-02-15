@@ -3,6 +3,7 @@
   --color-foreground: var(--color-foreground);
   --color-primary: var(--color-primary);
   --color-error: var(--color-error);
+  --color-box: var(--color-box);
 
   --breakpoint-sm: 600px;
   --breakpoint-md: 900px;
@@ -17,22 +18,24 @@
 
 @layer utilities {
   .container {
-    margin-inline: auto;
-    width: 100%;
-    padding-inline: 1rem;
+    // margin-inline: auto;
+    // width: 100%;
+    // padding-inline: 1rem;
   }
 }
 
 :root {
-  --color-background: rgb(255 255 255);
+  --color-background: rgb(230, 230, 230);
+  --color-box: rgb(180, 200, 247);
   --color-foreground: rgb(15 23 42);
-  --color-primary: rgb(99 102 241);
+  --color-primary: rgb(136, 137, 244);
   --color-error: rgb(220, 0, 0);
 }
 
 .dark {
-  --color-background: rgb(15 23 42);
-  --color-foreground: rgb(255 255 255);
+  --color-background: rgb(14, 20, 33);
+  --color-box: rgb(27, 39, 66);
+  --color-foreground: rgb(223, 223, 223);
   --color-primary: rgb(129 140 248);
   --color-error: rgb(224, 62, 62);
 }

@@ -16,6 +16,8 @@ i18n.use(initReactI18next).init({
         bio: "bio",
         "error loading": "error loading",
         history: "history",
+        "About this site": "About this site",
+        "Get PDF": "Get PDF",
       },
     },
     pl: {
@@ -28,6 +30,8 @@ i18n.use(initReactI18next).init({
         bio: "'o mnie'",
         "error loading": "błąd ładowania",
         history: "historia",
+        "About this site": "Informacje o tej stronie",
+        "Get PDF": "Pobierz PDF",
       },
     },
   },

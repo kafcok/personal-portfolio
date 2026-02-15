@@ -24,7 +24,7 @@ export default function Bio() {
     retry: false,
   });
 
-  console.log(bio);
+  // console.log(bio);
 
   async function getBio() {
     const { data, error } = await supabase
