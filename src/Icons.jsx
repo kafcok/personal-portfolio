@@ -1,5 +1,3 @@
-// import { useState } from "react";
-
 export function IconFlagPoland({ cls_hlp = "w-6 h-6" }) {
   return render("1F1F5-1F1F1", cls_hlp);
 }
@@ -24,7 +22,7 @@ function render(file_name, class_helper = "w-6 h-6") {
   return (
     <span className="inline-block">
       <img
-        src={`/src/icons/${file_name}.svg`}
+        src={`/icons/${file_name}.svg`}
         className={`inline-block ${class_helper}`}
       />
     </span>

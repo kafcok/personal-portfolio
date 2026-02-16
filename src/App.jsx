@@ -36,18 +36,20 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <div className="relative bg-background text-foreground transition-colors p-5 min-h-max flex flex-col">
-        <div className="top-5 right-5 flex basis-auto grow-0 shrink-0 justify-between items-center pb-5">
-          <h1 className="text-4xl pl-5">Maciej Kałwa. Front-end developer.</h1>
-          <div className="flex gap-5 items-center">
-            <a href="/" className="underline hover:no-underline">
+      <div className="relative bg-background text-foreground transition-colors p-5 flex flex-col min-h-screen">
+        <div className="top-5 right-5 flex flex-wrap basis-auto grow-0 shrink-0 justify-between items-center pb-5 gap-5">
+          <h1 className="text-2xl lg:text-4xl pl-5">
+            Maciej Kałwa. Front&#8209;end&nbsp;developer.
+          </h1>
+          <div className="flex flex-wrap gap-5 items-center">
+            <a href="/" className="underline hover:no-underline text-nowrap">
               👉{t("About this site")}👈
             </a>
             <ThemeToggle />
             <LanguageToggle />
             <button
               type="button"
-              className="cursor-pointer underline hover:no-underline"
+              className="cursor-pointer underline hover:no-underline text-nowrap"
             >
               📃 {t("Get PDF")}
             </button>

@@ -1,27 +1,31 @@
 @use "tailwindcss";
-@use "./variables.scss";
+@use "./variables" as *;
 @use "./fonts.scss";
 
-body {
-  //   background: rgb(140, 79, 79);
-}
+// body {
+//   background: rgb(140, 79, 79);
+// }
 
 .custom-grid {
-  @apply grid grid-cols-3 gap-3;
+  @apply flex flex-col gap-3;
 
   flex: 1 1 auto;
   min-height: 0;
 
-  grid-template-columns: 2fr 3fr 3fr;
-  //   grid-template-rows: repeat(6, 1fr);
+  //   grid-template-columns: 1fr;
 
-  grid-template-areas:
-    "bio tech experience"
-    "bio tech experience"
-    "bio tech experience"
-    "contact tech experience"
-    "contact strengths education"
-    ". language passions";
+  @media (width >= $bp-lg) {
+    @apply grid gap-3;
+    grid-template-columns: 2fr 3fr 3fr;
+    grid-template-areas:
+      "bio tech experience"
+      "bio tech experience"
+      "bio tech experience"
+      "contact tech experience"
+      "contact strengths education"
+      ". language passions";
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+  }
 
   .bio {
     grid-area: bio;

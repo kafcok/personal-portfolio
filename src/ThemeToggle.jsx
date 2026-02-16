@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "./hooks/useTheme";
-import { IconCrescentMoon, IconSun } from "./icons/Icons";
+import { IconCrescentMoon, IconSun } from "./Icons";
 
 export default function ThemeToggle() {
   const { theme, toggle } = useTheme();
@@ -9,7 +9,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="px-4 py-2 rounded-xl transition bg-foreground text-primary cursor-pointer"
+      className="px-4 py-2 rounded-xl transition bg-foreground text-primary cursor-pointer text-nowrap min-w-max"
     >
       {theme === "dark" ? (
         <>
