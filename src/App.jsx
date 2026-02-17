@@ -10,11 +10,12 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // import { createClient } from "@supabase/supabase-js";
 
 import { useI18nSync } from "./hooks/useI18nSync";
+import { useTranslation } from "react-i18next";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
 import Bio from "./Bio";
 import Box from "./Box";
-import { useTranslation } from "react-i18next";
+import Grid from "./Grid";
 
 // const supabase = createClient(
 //   import.meta.env.VITE_SUPABASE_URL,
@@ -55,7 +56,8 @@ function App() {
             </button>
           </div>
         </div>
-        <div className="custom-grid">
+
+        <Grid>
           <Box gridArea="bio">
             <Bio />
           </Box>
@@ -131,7 +133,7 @@ function App() {
               exercitation dolore exercitation ullamco consectetur.
             </p>
           </Box>
-        </div>
+        </Grid>
       </div>
     </QueryClientProvider>
   );

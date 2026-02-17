@@ -3,77 +3,11 @@
 @use "./fonts.scss";
 
 // body {
-//   background: rgb(140, 79, 79);
+// background: rgb(140, 79, 79);
 // }
 
-.custom-grid {
-  @apply flex flex-col gap-3;
-
-  flex: 1 1 auto;
-  min-height: 0;
-
-  //   grid-template-columns: 1fr;
-
-  @media (width >= $bp-lg) {
-    @apply grid gap-3;
-    grid-template-columns: 2fr 3fr 3fr;
-    grid-template-areas:
-      "bio tech experience"
-      "bio tech experience"
-      "bio tech experience"
-      "contact tech experience"
-      "contact strengths education"
-      ". language passions";
-    grid-template-rows: repeat(6, minmax(0, 1fr));
-  }
-
-  .bio {
-    grid-area: bio;
-  }
-  .tech {
-    grid-area: tech;
-  }
-  .experience {
-    grid-area: experience;
-  }
-  .contact {
-    grid-area: contact;
-  }
-  .strengths {
-    grid-area: strengths;
-  }
-  .education {
-    grid-area: education;
-  }
-  .language {
-    grid-area: language;
-  }
-  .passions {
-    grid-area: passions;
-  }
-}
-
-.scrollbar {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: rgba(100, 116, 139, 0.5) transparent;
-}
-
-.scrollbar::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 116, 139, 0.5);
-  border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
-
-.scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(100, 116, 139, 0.8);
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-box) transparent;
+  background-color: var(--color-background);
 }
