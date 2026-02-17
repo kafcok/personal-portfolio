@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 
 const SBox = styled.div<{ $gridArea?: string }>`
-  grid-area: ${({ $gridArea }) => $gridArea};
+  ${({ $gridArea }) => $gridArea && `grid-area: ${$gridArea};`}
 `;
 
 type BoxProps = {
