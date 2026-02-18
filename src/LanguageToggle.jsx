@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
-import { useLanguage } from "./hooks/useLanguage";
+import { useContext, useEffect, useState } from "react";
 import { IconFlagPoland, IconFlagUK } from "./Icons";
 import { useTranslation } from "react-i18next";
+import { MainContext } from "./Contexts";
 
 export default function LanguageToggle() {
-  const { lang, toggle } = useLanguage();
+  const { onLanguageToggle, lang } = useContext(MainContext);
   const [emote, setEmote] = useState("");
 
   const { t } = useTranslation();
 
   useEffect(
     function () {
-      setEmote(lang.includes("pl") ? <IconFlagUK /> : <IconFlagPoland />);
+      setEmote(lang?.includes("pl") ? <IconFlagUK /> : <IconFlagPoland />);
     },
     [lang, setEmote],
   );
 
   return (
     <button
-      onClick={toggle}
+      onClick={onLanguageToggle}
       className="px-3 py-2 rounded-lg bg-primary text-white cursor-pointer text-nowrap min-w-max"
     >
       {t("set")} {emote}

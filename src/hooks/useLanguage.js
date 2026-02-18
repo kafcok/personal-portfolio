@@ -5,6 +5,7 @@ const detectLanguage = () => {
   if (stored) return stored;
 
   const sys = navigator.language.toLowerCase();
+
   return sys.startsWith("pl") ? "pl" : "en";
 };
 
