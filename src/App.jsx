@@ -50,7 +50,7 @@ function App() {
     <MainContext.Provider value={{ onLanguageToggle, lang }}>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <div className="relative bg-background text-foreground transition-colors p-5 flex flex-col min-h-screen">
+        <div className="relative text-foreground transition-colors p-5 flex flex-col min-h-screen futura-bg">
           <div className="top-5 right-5 flex flex-wrap basis-auto grow-0 shrink-0 justify-between items-center pb-5 gap-5">
             <h1 className="text-2xl lg:text-4xl pl-5">
               Maciej Kałwa. Front&#8209;end&nbsp;developer.
