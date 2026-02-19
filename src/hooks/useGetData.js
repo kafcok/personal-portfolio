@@ -6,11 +6,13 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
 );
 
+const retries = false;
+
 export function useBio({ q_key, lang }) {
   const { isLoading, data, error, status } = useQuery({
     queryKey: [q_key, lang],
     queryFn: getBio,
-    retry: false,
+    retry: retries,
   });
 
   async function getBio() {
@@ -25,6 +27,32 @@ export function useBio({ q_key, lang }) {
     }
     return data;
   }
+  return { isLoading, data, error, status };
+}
 
+export function useTechStack({ q_key, lang }) {
+  const { isLoading, data, error, status } = useQuery({
+    queryKey: [q_key, lang],
+    queryFn: getTechStack,
+    retry: retries,
+  });
+
+  async function getTechStack() {
+    const { data, error } = await supabase
+      .from(q_key)
+      .select(
+        `
+        header_${lang},
+        tech_skills(id, image, level, label)
+        `,
+      )
+      .limit(1)
+      .single();
+    if (error) {
+      throw new Error(`"error loading" ${q_key}`);
+    }
+    // console.log(data);
+    return data;
+  }
   return { isLoading, data, error, status };
 }

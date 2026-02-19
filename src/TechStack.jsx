@@ -1,0 +1,44 @@
+import { useContext, useEffect, useState } from "react";
+import { MainContext } from "./Contexts";
+import { useTechStack } from "./hooks/useGetData";
+
+export default function TechStack() {
+  const q_key = "tech";
+  const { lang } = useContext(MainContext);
+  const { isLoading, data, error, status } = useTechStack({ q_key, lang });
+  const [skills, setSkills] = useState([]);
+
+  useEffect(
+    function () {
+      if (data) {
+        setSkills(data.tech_skills);
+      }
+    },
+    [data],
+  );
+
+  if (error) {
+    return <p className="text-error">{error.message}</p>;
+  }
+
+  if (isLoading) {
+    return <p>{status}</p>;
+  }
+
+  return (
+    <>
+      <h2 className="text-2xl md:text-3xl font-bold mb-3">
+        {data?.[`header_${lang}`]}
+      </h2>
+      {skills.length > 0 ? (
+        <ul>
+          {skills.map(function (item) {
+            return <li key={item.id}>{item.label}</li>;
+          })}
+        </ul>
+      ) : (
+        ""
+      )}
+    </>
+  );
+}
