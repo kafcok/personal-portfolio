@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { MainContext } from "./Contexts";
-import { useBio } from "./hooks/useGetData";
+import { MainContext } from "../Contexts";
+import { useBio } from "../hooks/useGetData";
 
 export default function Bio() {
   const q_key = "bio";

@@ -23,3 +23,15 @@ export function useLanguage() {
 
   return { lang, setLang, toggle };
 }
+
+export function formatMonthYear(dateString) {
+  if (!dateString) return "";
+
+  const locale = detectLanguage();
+  const date = new Date(dateString);
+
+  return new Intl.DateTimeFormat(locale, {
+    month: "long",
+    year: "numeric",
+  }).format(date);
+}

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { MainContext } from "./Contexts";
-import { useTechStack } from "./hooks/useGetData";
+import { MainContext } from "../Contexts";
+import { useTechStack } from "../hooks/useGetData";
 
 export default function TechStack() {
   const q_key = "tech";
@@ -15,6 +15,13 @@ export default function TechStack() {
       }
     },
     [data],
+  );
+
+  useEffect(
+    function () {
+      // console.log(skills);
+    },
+    [skills],
   );
 
   if (error) {
@@ -33,7 +40,11 @@ export default function TechStack() {
       {skills.length > 0 ? (
         <ul>
           {skills.map(function (item) {
-            return <li key={item.id}>{item.label}</li>;
+            return (
+              <li key={item.id}>
+                {item.label} {item.level}
+              </li>
+            );
           })}
         </ul>
       ) : (

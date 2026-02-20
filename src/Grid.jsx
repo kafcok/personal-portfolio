@@ -9,7 +9,7 @@ const SGrid = styled.div`
 
   @media (min-width: 1000px) {
     display: grid;
-    grid-template-columns: 2fr 3fr 3fr;
+    grid-template-columns: 2fr 2fr 4fr;
     grid-template-areas:
       "bio tech experience"
       "bio tech experience"

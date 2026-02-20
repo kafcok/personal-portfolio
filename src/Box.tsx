@@ -32,7 +32,7 @@ export default function Box({ children, gridArea }: BoxProps) {
       <div className="bg" />
       <div className="min-h-0">
         {/* <div className="top-0 z-10 bg-box text-lg md:text-xl pb-2">Header</div> */}
-        <div className="text-sm md:text-base">{children}</div>
+        <div className="text-base md:text-base">{children}</div>
       </div>
     </SBox>
   );

@@ -18,6 +18,8 @@ i18n.use(initReactI18next).init({
         history: "history",
         "About this site": "About this site",
         "Get PDF": "Get PDF",
+        Responsibilities: "Responsibilities",
+        present: "present",
       },
     },
     pl: {
@@ -32,6 +34,8 @@ i18n.use(initReactI18next).init({
         history: "historia",
         "About this site": "Informacje o tej stronie",
         "Get PDF": "Pobierz PDF",
+        Responsibilities: "Obowiązki",
+        present: "obecnie",
       },
     },
   },

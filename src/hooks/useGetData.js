@@ -51,8 +51,38 @@ export function useTechStack({ q_key, lang }) {
     if (error) {
       throw new Error(`"error loading" ${q_key}`);
     }
-    // console.log(data);
     return data;
   }
+  return { isLoading, data, error, status };
+}
+
+export function useExperience({ q_key, lang }) {
+  const { isLoading, data, error, status } = useQuery({
+    queryKey: [q_key, lang],
+    queryFn: getExperience,
+    retry: retries,
+  });
+
+  async function getExperience() {
+    const { data, error } = await supabase
+      .from(q_key)
+      .select(
+        `
+        header_${lang},
+        experience_jobs(id, start_date, end_date, name, responsibilities_${lang}, function_${lang}, url)
+        `,
+      )
+      .order("start_date", {
+        referencedTable: "experience_jobs",
+        ascending: false,
+      })
+      .limit(1)
+      .single();
+    if (error) {
+      throw new Error(`"error loading" ${q_key}`);
+    }
+    return data;
+  }
+
   return { isLoading, data, error, status };
 }

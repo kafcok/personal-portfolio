@@ -14,12 +14,13 @@ import { useI18nSync } from "./hooks/useI18nSync";
 import { useTranslation } from "react-i18next";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
-import Bio from "./Bio";
 import Box from "./Box";
 import Grid from "./Grid";
+import Bio from "./sections/Bio";
+import TechStack from "./sections/TechStack";
 import { MainContext } from "./Contexts";
 import { useLanguage } from "./hooks/useLanguage";
-import TechStack from "./TechStack";
+import Experience from "./sections/Experience";
 
 // const supabase = createClient(
 //   import.meta.env.VITE_SUPABASE_URL,
@@ -79,29 +80,7 @@ function App() {
               <TechStack />
             </Box>
             <Box gridArea="experience">
-              <p>
-                Aliquip dolore ullamco officia qui dolore nisi exercitation
-                dolore exercitation ullamco consectetur. Tempor Lorem ullamco
-                voluptate ex officia id. Sint eu ea cillum excepteur veniam qui
-                ex ut. Velit nulla adipisicing occaecat cillum. Sit irure cillum
-                deserunt non labore sit esse Lorem id. Est nulla nisi laboris
-                proident. Aute duis et amet ad ut do. Est officia pariatur quis
-                amet adipisicing et pariatur nulla anim occaecat. Commodo
-                deserunt amet proident in dolor ea occaecat laborum proident
-                culpa aliqua excepteur consectetur. Elit exercitation sint ad
-                tempor incididunt. Voluptate aute elit proident est eiusmod
-                mollit sint id exercitation magna tempor. Ut nostrud deserunt
-                aliqua cupidatat veniam dolore. Sunt dolore incididunt velit
-                laborum ea deserunt minim voluptate mollit non sint minim. Qui
-                elit tempor commodo ad velit qui exercitation enim irure amet
-                magna incididunt nulla. Et eiusmod labore deserunt ea anim.
-                Consequat veniam ullamco duis labore fugiat laborum proident
-                incididunt. Ut eiusmod dolore nulla adipisicing esse quis ex
-                labore nostrud do Lorem fugiat. Ipsum eu cupidatat est labore
-                voluptate. Aliqua quis amet aliqua exercitation laboris sint.
-                Non mollit consequat magna adipisicing dolore enim. Magna do do
-                sint consequat laborum.
-              </p>
+              <Experience />
             </Box>
             <Box gridArea="contact">
               <p>Kontakt</p>

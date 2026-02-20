@@ -5,9 +5,10 @@ export function useTheme() {
     const stored = localStorage.getItem("theme");
     if (stored) return stored;
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    // return window.matchMedia("(prefers-color-scheme: dark)").matches
+    //   ? "dark"
+    //   : "light";
+    return "dark";
   };
 
   const [theme, setTheme] = useState(getInitialTheme);
