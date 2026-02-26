@@ -65,7 +65,7 @@ export default function Passions() {
               ) : (
                 item?.[`name_${lang}`]
               )}
-              <span>//</span>
+              <span>||</span>
             </li>
           );
         })}
