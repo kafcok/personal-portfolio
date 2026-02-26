@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { MainContext } from "../Contexts";
-import { useBio } from "../hooks/useGetData";
+import { useContact } from "../hooks/useGetData";
 import Spinner from "../Spinner";
 
-export default function Bio() {
-  const q_key = "bio";
+export default function Contact() {
+  const q_key = "contact";
   const { lang } = useContext(MainContext);
-  const { isLoading, data: bio, error, status } = useBio({ q_key, lang });
+  const { isLoading, data, error } = useContact({ q_key, lang });
 
   if (error) {
     return <p className="text-error">{error.message}</p>;
@@ -19,9 +19,12 @@ export default function Bio() {
   return (
     <>
       <h2 className="text-2xl md:text-3xl font-bold mb-3">
-        {bio?.[`header_${lang}`]}
+        {data?.[`header_${lang}`]}
       </h2>
-      <p>{bio?.[`description_${lang}`]}</p>
+      <div
+        className="content"
+        dangerouslySetInnerHTML={{ __html: data?.[`content_${lang}`] }}
+      ></div>
     </>
   );
 }

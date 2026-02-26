@@ -1,7 +1,6 @@
 import "tailwindcss";
 
-// import { useEffect, useState } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import {
   QueryClient,
   QueryClientProvider,
@@ -12,7 +11,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { useI18nSync } from "./hooks/useI18nSync";
 import { useTranslation } from "react-i18next";
-import ThemeToggle from "./ThemeToggle";
+// import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
 import Box from "./Box";
 import Grid from "./Grid";
@@ -21,6 +20,11 @@ import TechStack from "./sections/TechStack";
 import { MainContext } from "./Contexts";
 import { useLanguage } from "./hooks/useLanguage";
 import Experience from "./sections/Experience";
+import Contact from "./sections/Contact";
+import Strengths from "./sections/Strengths";
+import Education from "./sections/Education";
+import Languages from "./sections/Languages";
+import Passions from "./sections/Passions";
 
 // const supabase = createClient(
 //   import.meta.env.VITE_SUPABASE_URL,
@@ -61,7 +65,7 @@ function App() {
               <a href="/" className="underline hover:no-underline text-nowrap">
                 👉{t("About this site")}👈
               </a>
-              <ThemeToggle />
+              {/* <ThemeToggle /> */}
               <LanguageToggle />
               <button
                 type="button"
@@ -83,28 +87,19 @@ function App() {
               <Experience />
             </Box>
             <Box gridArea="contact">
-              <p>Kontakt</p>
+              <Contact />
             </Box>
             <Box gridArea="strengths">
-              <p>Strengths</p>
+              <Strengths />
             </Box>
             <Box gridArea="education">
-              <p>
-                Education. Aliquip dolore ullamco officia qui dolore nisi
-                exercitation dolore exercitation ullamco consectetur.
-              </p>
+              <Education />
             </Box>
             <Box gridArea="language">
-              <p>
-                language. Aliquip dolore ullamco officia qui dolore nisi
-                exercitation dolore exercitation ullamco consectetur.
-              </p>
+              <Languages />
             </Box>
             <Box gridArea="passions">
-              <p>
-                passions. Aliquip dolore ullamco officia qui dolore nisi
-                exercitation dolore exercitation ullamco consectetur.
-              </p>
+              <Passions />
             </Box>
           </Grid>
         </div>

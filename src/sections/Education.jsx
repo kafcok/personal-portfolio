@@ -1,21 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { MainContext } from "../Contexts";
-import { useExperience } from "../hooks/useGetData";
+import { useEducation } from "../hooks/useGetData";
 import { useTranslation } from "react-i18next";
-import ListJobs from "./ListJobs";
+import ListSchools from "./ListSchools";
 import Spinner from "../Spinner";
 
-export default function Experience() {
-  const q_key = "experience";
+export default function Education() {
+  const q_key = "education";
   const { lang } = useContext(MainContext);
-  const { isLoading, data, error, status } = useExperience({ q_key, lang });
+  const { isLoading, data, error } = useEducation({ q_key, lang });
   const { t } = useTranslation();
-  const [jobs, setJobs] = useState([]);
+  const [schools, setSchools] = useState([]);
 
   useEffect(
     function () {
       if (data) {
-        setJobs(data.experience_jobs);
+        setSchools(data.education_school);
       }
     },
     [data],
@@ -34,7 +34,7 @@ export default function Experience() {
       <h2 className="text-2xl md:text-3xl font-bold mb-3">
         {data?.[`header_${lang}`]}
       </h2>
-      <ListJobs jobs={jobs} />
+      <ListSchools schools={schools} />
     </>
   );
 }

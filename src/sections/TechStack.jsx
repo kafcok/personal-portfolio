@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { MainContext } from "../Contexts";
 import { useTechStack } from "../hooks/useGetData";
+import Spinner from "../Spinner";
 
 export default function TechStack() {
   const q_key = "tech";
@@ -29,7 +30,7 @@ export default function TechStack() {
   }
 
   if (isLoading) {
-    return <p>{status}</p>;
+    return <Spinner />;
   }
 
   return (

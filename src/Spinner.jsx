@@ -1,0 +1,65 @@
+import styled from "styled-components";
+
+const SSpinner = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  padding: 40px 0;
+  .loader {
+    width: 45px;
+    aspect-ratio: 0.75;
+    --c: no-repeat linear-gradient(#e1e1e1c5 0 0);
+    background:
+      var(--c) 0% 50%,
+      var(--c) 50% 50%,
+      var(--c) 100% 50%;
+    animation: l7 1s infinite linear alternate;
+  }
+  @keyframes l7 {
+    0% {
+      background-size:
+        20% 50%,
+        20% 50%,
+        20% 50%;
+    }
+    20% {
+      background-size:
+        20% 20%,
+        20% 50%,
+        20% 50%;
+    }
+    40% {
+      background-size:
+        20% 100%,
+        20% 20%,
+        20% 50%;
+    }
+    60% {
+      background-size:
+        20% 50%,
+        20% 100%,
+        20% 20%;
+    }
+    80% {
+      background-size:
+        20% 50%,
+        20% 50%,
+        20% 100%;
+    }
+    100% {
+      background-size:
+        20% 50%,
+        20% 50%,
+        20% 50%;
+    }
+  }
+`;
+
+export default function Spinner() {
+  return (
+    <SSpinner>
+      <div className="loader"></div>
+    </SSpinner>
+  );
+}

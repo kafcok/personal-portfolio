@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { formatMonthYear } from "./hooks/useLanguage";
+import { formatMonthYear } from "../hooks/useLanguage";
 import { useEffect } from "react";
 import styled from "styled-components";
 

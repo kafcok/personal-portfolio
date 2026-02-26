@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 export function useTheme() {
   const getInitialTheme = () => {
-    const stored = localStorage.getItem("theme");
-    if (stored) return stored;
+    // const stored = localStorage.getItem("theme");
+    // if (stored) return stored;
 
     // return window.matchMedia("(prefers-color-scheme: dark)").matches
     //   ? "dark"

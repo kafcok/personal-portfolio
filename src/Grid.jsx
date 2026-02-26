@@ -5,11 +5,11 @@ const SGrid = styled.div`
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
-  gap: calc(var(--spacing) * 5);
+  gap: calc(var(--spacing) * 10);
 
   @media (min-width: 1000px) {
     display: grid;
-    grid-template-columns: 2fr 2fr 4fr;
+    grid-template-columns: 2fr 2fr 5fr;
     grid-template-areas:
       "bio tech experience"
       "bio tech experience"
@@ -17,7 +17,7 @@ const SGrid = styled.div`
       "contact tech experience"
       "contact strengths education"
       ". language passions";
-    grid-template-rows: repeat(6, minmax(0, 1fr));
+    /* grid-template-rows: repeat(6, minmax(0, 1fr)); */
   }
 `;
 
