@@ -26,5 +26,5 @@ export default async function handler(req, res) {
   await browser.close();
 
   res.setHeader("Content-Type", "application/pdf");
-  res.status(200).end(pdf);
+  res.end(pdf);
 }
