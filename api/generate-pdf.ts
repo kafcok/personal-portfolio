@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   await page.setContent(`
     <html>
       <body>
-        <h1>PDF działa 🎉</h1>
+        <h1>PDF działa 🎉 hgjhg jhg jhg</h1>
       </body>
     </html>
   `);
