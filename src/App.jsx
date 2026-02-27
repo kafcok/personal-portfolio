@@ -31,6 +31,12 @@ import Passions from "./sections/Passions";
 //   import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
 // );
 
+async function handleGeneratePDF() {
+  await fetch("/api/generate-pdf", {
+    method: "POST",
+  });
+}
+
 function App() {
   const { t } = useTranslation();
   const { lang, toggle } = useLanguage();
@@ -68,6 +74,7 @@ function App() {
               {/* <ThemeToggle /> */}
               <LanguageToggle />
               <button
+                onClick={handleGeneratePDF}
                 type="button"
                 className="cursor-pointer underline hover:no-underline text-nowrap"
               >

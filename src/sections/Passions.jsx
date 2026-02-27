@@ -8,15 +8,20 @@ import Spinner from "../Spinner";
 
 const SPassionsList = styled.ul`
   display: flex;
-  /* gap: 20px; */
+  flex-wrap: wrap;
   justify-content: flex-start;
 
-  > li > span {
-    color: var(--color-accent);
-    margin: 0 30px;
-  }
-  > li:last-child > span {
-    display: none;
+  > li {
+    white-space: nowrap;
+    > span {
+      color: var(--color-accent);
+      margin: 0 30px;
+    }
+    &:last-child {
+      > span {
+        display: none;
+      }
+    }
   }
 `;
 

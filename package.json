@@ -13,11 +13,13 @@
   "dependencies": {
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.8",
+    "@sparticuz/chromium": "^143.0.4",
     "@supabase/supabase-js": "^2.95.3",
     "@tanstack/react-query": "^4.43.0",
     "@tanstack/react-query-devtools": "^4.43.0",
     "@tippyjs/react": "^4.2.6",
     "i18next": "^25.8.7",
+    "puppeteer-core": "^24.37.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^16.5.4",
