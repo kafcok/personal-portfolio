@@ -24,13 +24,9 @@ const SGrid = styled.div`
 
   ${({ $isPdf }) =>
     $isPdf &&
-    `grid-template-columns: 1fr 1fr !important;
-    grid-template-areas:
-      "bio tech"
-      "contact strengths"
-      "experience experience"
-      "language passions"
-      "education education" !important;
+    `display: block !important;
+    grid-template-columns: 1fr 1fr !important;
+      grid-template-areas: none !important;
       gap: 15px;
       padding: 0px;
       background: white;

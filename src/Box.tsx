@@ -30,7 +30,10 @@ type BoxProps = {
 export default function Box({ children, gridArea }: BoxProps) {
   const { isPdf } = useContext(MainContext);
   return (
-    <SBox className={isPdf ? `` : `px-8 py-5`} $gridArea={gridArea}>
+    <SBox
+      className={isPdf ? `` : `px-8 py-5`}
+      $gridArea={isPdf ? "" : gridArea}
+    >
       <div className="bg rounded-xl" />
       <div className="min-h-0">
         {/* <div className="top-0 z-10 bg-box text-lg md:text-xl pb-2">Header</div> */}

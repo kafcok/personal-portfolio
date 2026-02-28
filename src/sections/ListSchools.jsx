@@ -11,11 +11,11 @@ const SSchoolItem = styled.li`
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  margin-bottom: 30px;
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-foreground);
     padding-bottom: 40px;
+    margin-bottom: 30px;
   }
   @container (min-width: 600px) {
     /* grid-template-columns: 40% auto; */
