@@ -1,6 +1,6 @@
 import "tailwindcss";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   QueryClient,
   QueryClientProvider,
@@ -25,12 +25,8 @@ import Strengths from "./sections/Strengths";
 import Education from "./sections/Education";
 import Languages from "./sections/Languages";
 import Passions from "./sections/Passions";
-
-async function handleGeneratePDF() {
-  await fetch("/api/generate-pdf", {
-    method: "POST",
-  });
-}
+import ModalWindow from "./ModalWindow";
+import Spinner from "./Spinner";
 
 const params = new URLSearchParams(window.location.search);
 const isPdf = params.get("pdf") === "true";
@@ -38,6 +34,28 @@ const isPdf = params.get("pdf") === "true";
 function App() {
   const { t } = useTranslation();
   const { lang, toggle } = useLanguage();
+  const [pdfLoading, setPdfLoading] = useState(false);
+
+  async function handleGeneratePDF() {
+    setPdfLoading(true);
+    const res = await fetch("/api/generate-pdf", {
+      method: "POST",
+    });
+
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "cv.pdf";
+    document.body.appendChild(a);
+    a.click();
+
+    a.remove();
+    window.URL.revokeObjectURL(url);
+    setPdfLoading(false);
+  }
+
   useI18nSync();
 
   const queryClient = useMemo(
@@ -60,6 +78,11 @@ function App() {
     <MainContext.Provider value={{ onLanguageToggle, lang, isPdf }}>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
+        {pdfLoading ? (
+          <ModalWindow>
+            <Spinner />
+          </ModalWindow>
+        ) : null}
         <div
           className={
             isPdf

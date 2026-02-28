@@ -22,7 +22,10 @@ export default async function handler(req, res) {
   await browser.close();
 
   res.setHeader("Content-Type", "application/pdf");
-  res.setHeader("Content-Disposition", "attachment; filename=cv.pdf");
+  res.setHeader(
+    "Content-Disposition",
+    "attachment; filename=maciej-kalwa-cv.pdf",
+  );
 
   res.status(200).end(pdf);
 }
