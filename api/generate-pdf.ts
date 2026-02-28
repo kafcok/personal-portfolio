@@ -10,13 +10,9 @@ export default async function handler(req, res) {
 
   const page = await browser.newPage();
 
-  await page.setContent(`
-    <html>
-      <body>
-        <h1>PDF działa 🎉 hgjhg jhg jhg</h1>
-      </body>
-    </html>
-  `);
+  await page.goto(`${process.env.SITE_URL}?pdf=true`, {
+    waitUntil: "networkidle0",
+  });
 
   const pdf = await page.pdf({
     format: "A4",
@@ -26,5 +22,7 @@ export default async function handler(req, res) {
   await browser.close();
 
   res.setHeader("Content-Type", "application/pdf");
-  res.end(pdf);
+  res.setHeader("Content-Disposition", "attachment; filename=cv.pdf");
+
+  res.status(200).end(pdf);
 }

@@ -26,16 +26,14 @@ import Education from "./sections/Education";
 import Languages from "./sections/Languages";
 import Passions from "./sections/Passions";
 
-// const supabase = createClient(
-//   import.meta.env.VITE_SUPABASE_URL,
-//   import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-// );
-
 async function handleGeneratePDF() {
   await fetch("/api/generate-pdf", {
     method: "POST",
   });
 }
+
+const params = new URLSearchParams(window.location.search);
+const isPdf = params.get("pdf") === "true";
 
 function App() {
   const { t } = useTranslation();
@@ -59,28 +57,39 @@ function App() {
   };
 
   return (
-    <MainContext.Provider value={{ onLanguageToggle, lang }}>
+    <MainContext.Provider value={{ onLanguageToggle, lang, isPdf }}>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <div className="relative text-foreground transition-colors p-5 flex flex-col min-h-screen futura-bg">
+        <div
+          className={
+            isPdf
+              ? `pdf-layout`
+              : `relative text-foreground transition-colors p-5 flex flex-col min-h-screen futura-bg`
+          }
+        >
           <div className="top-5 right-5 flex flex-wrap basis-auto grow-0 shrink-0 justify-between items-center pb-5 gap-5">
             <h1 className="text-2xl lg:text-4xl pl-5">
               Maciej Kałwa. Front&#8209;end&nbsp;developer.
             </h1>
-            <div className="flex flex-wrap gap-5 items-center">
-              <a href="/" className="underline hover:no-underline text-nowrap">
-                👉{t("About this site")}👈
-              </a>
-              {/* <ThemeToggle /> */}
-              <LanguageToggle />
-              <button
-                onClick={handleGeneratePDF}
-                type="button"
-                className="cursor-pointer underline hover:no-underline text-nowrap"
-              >
-                📃 {t("Get PDF")}
-              </button>
-            </div>
+            {isPdf ? null : (
+              <div className="flex flex-wrap gap-5 items-center">
+                <a
+                  href="/"
+                  className="underline hover:no-underline text-nowrap"
+                >
+                  👉{t("About this site")}👈
+                </a>
+                {/* <ThemeToggle /> */}
+                <LanguageToggle />
+                <button
+                  onClick={handleGeneratePDF}
+                  type="button"
+                  className="cursor-pointer underline hover:no-underline text-nowrap"
+                >
+                  📃 {t("Get PDF")}
+                </button>
+              </div>
+            )}
           </div>
 
           <Grid>

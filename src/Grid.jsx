@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { MainContext } from "./Contexts";
 
 const SGrid = styled.div`
   display: flex;
@@ -19,8 +21,26 @@ const SGrid = styled.div`
       ". language passions";
     /* grid-template-rows: repeat(6, minmax(0, 1fr)); */
   }
+
+  ${({ $isPdf }) =>
+    $isPdf &&
+    `grid-template-columns: 1fr 1fr !important;
+    grid-template-areas:
+      "bio tech"
+      "contact strengths"
+      "experience experience"
+      "language passions"
+      "education education" !important;
+      
+      padding: 0px;
+      background: white;
+      color: black;
+
+      `}
 `;
 
 export default function Grid({ children }) {
-  return <SGrid>{children}</SGrid>;
+  const { isPdf } = useContext(MainContext);
+
+  return <SGrid $isPdf={isPdf}>{children}</SGrid>;
 }

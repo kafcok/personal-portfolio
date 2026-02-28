@@ -9,7 +9,36 @@
 html {
   scrollbar-width: thin;
   scrollbar-color: var(--color-box) transparent;
-  background-color: var(--color-background);
+  // background-color: var(--color-background);
+}
+
+.pdf-layout {
+  background: white !important;
+  color: black !important;
+  margin: 0 auto;
+  width: 794px;
+  min-height: 1123px;
+  padding: 40px 0 0 0;
+
+  * {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    * {
+      background: white !important;
+      color: black !important;
+    }
+  }
+
+  .no-print {
+    display: none !important;
+  }
 }
 
 .futura-bg {

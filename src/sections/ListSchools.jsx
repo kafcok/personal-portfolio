@@ -18,7 +18,7 @@ const SSchoolItem = styled.li`
     padding-bottom: 40px;
   }
   @container (min-width: 600px) {
-    grid-template-columns: 40% auto;
+    /* grid-template-columns: 40% auto; */
   }
 `;
 
