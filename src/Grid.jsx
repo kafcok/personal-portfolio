@@ -31,7 +31,7 @@ const SGrid = styled.div`
       "experience experience"
       "language passions"
       "education education" !important;
-      
+      gap: 15px;
       padding: 0px;
       background: white;
       color: black;
