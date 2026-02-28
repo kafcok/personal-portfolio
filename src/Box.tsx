@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
 import styled from "styled-components";
+import { MainContext } from "./Contexts";
 
 const SBox = styled.div<{ $gridArea?: string }>`
   ${({ $gridArea }) => $gridArea && `grid-area: ${$gridArea};`}
@@ -27,12 +28,13 @@ type BoxProps = {
 };
 
 export default function Box({ children, gridArea }: BoxProps) {
+  const { isPdf } = useContext(MainContext);
   return (
-    <SBox className="px-8 py-5" $gridArea={gridArea}>
+    <SBox className={isPdf ? `` : `px-8 py-5`} $gridArea={gridArea}>
       <div className="bg rounded-xl" />
       <div className="min-h-0">
         {/* <div className="top-0 z-10 bg-box text-lg md:text-xl pb-2">Header</div> */}
-        <div className="text-base md:text-base">{children}</div>
+        <div className={isPdf ? "text-xs" : "text-base"}>{children}</div>
       </div>
     </SBox>
   );

@@ -4,6 +4,7 @@ import { useEducation } from "../hooks/useGetData";
 import { useTranslation } from "react-i18next";
 import ListSchools from "./ListSchools";
 import Spinner from "../Spinner";
+import SectionHeader from "../SectionHeader";
 
 export default function Education() {
   const q_key = "education";
@@ -31,9 +32,7 @@ export default function Education() {
 
   return (
     <>
-      <h2 className="text-2xl md:text-3xl font-bold mb-3">
-        {data?.[`header_${lang}`]}
-      </h2>
+      <SectionHeader text={data?.[`header_${lang}`]} />
       <ListSchools schools={schools} />
     </>
   );

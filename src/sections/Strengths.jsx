@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { MainContext } from "../Contexts";
 import { useStrengths } from "../hooks/useGetData";
 import Spinner from "../Spinner";
+import SectionHeader from "../SectionHeader";
 
 export default function Strengths() {
   const q_key = "strengths";
@@ -28,9 +29,7 @@ export default function Strengths() {
 
   return (
     <>
-      <h2 className="text-2xl md:text-3xl font-bold mb-3">
-        {data?.[`header_${lang}`]}
-      </h2>
+      <SectionHeader text={data?.[`header_${lang}`]} />
       {strengths.length > 0 ? (
         <ul>
           {strengths.map(function (item) {

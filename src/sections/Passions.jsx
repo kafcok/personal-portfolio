@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import Spinner from "../Spinner";
+import SectionHeader from "../SectionHeader";
 
 const SPassionsList = styled.ul`
   display: flex;
@@ -40,10 +41,7 @@ export default function Passions() {
 
   return (
     <>
-      <h2 className="text-2xl md:text-3xl font-bold mb-3">
-        {data?.[`header_${lang}`]}
-      </h2>
-
+      <SectionHeader text={data?.[`header_${lang}`]} />
       <SPassionsList>
         {data?.passions_items?.map((item) => {
           return (

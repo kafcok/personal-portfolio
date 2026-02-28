@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { MainContext } from "../Contexts";
 import { useBio } from "../hooks/useGetData";
 import Spinner from "../Spinner";
+import SectionHeader from "../SectionHeader";
 
 export default function Bio() {
   const q_key = "bio";
@@ -18,9 +19,7 @@ export default function Bio() {
 
   return (
     <>
-      <h2 className="text-2xl md:text-3xl font-bold mb-3">
-        {bio?.[`header_${lang}`]}
-      </h2>
+      <SectionHeader text={bio?.[`header_${lang}`]} />
       <p>{bio?.[`description_${lang}`]}</p>
     </>
   );

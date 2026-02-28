@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { MainContext } from "../Contexts";
 import { useTechStack } from "../hooks/useGetData";
 import Spinner from "../Spinner";
+import SectionHeader from "../SectionHeader";
 
 export default function TechStack() {
   const q_key = "tech";
@@ -35,9 +36,7 @@ export default function TechStack() {
 
   return (
     <>
-      <h2 className="text-2xl md:text-3xl font-bold mb-3">
-        {data?.[`header_${lang}`]}
-      </h2>
+      <SectionHeader text={data?.[`header_${lang}`]} />
       {skills.length > 0 ? (
         <ul>
           {skills.map(function (item) {

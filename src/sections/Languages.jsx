@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { MainContext } from "../Contexts";
 import { useLanguages } from "../hooks/useGetData";
 import Spinner from "../Spinner";
+import SectionHeader from "../SectionHeader";
 
 export default function Languages() {
   const q_key = "languages";
@@ -18,9 +19,7 @@ export default function Languages() {
 
   return (
     <>
-      <h2 className="text-2xl md:text-3xl font-bold mb-3">
-        {data?.[`header_${lang}`]}
-      </h2>
+      <SectionHeader text={data?.[`header_${lang}`]} />
       <ul>
         {data?.languages_items.map((item) => {
           return (

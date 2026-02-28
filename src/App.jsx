@@ -27,6 +27,7 @@ import Languages from "./sections/Languages";
 import Passions from "./sections/Passions";
 import ModalWindow from "./ModalWindow";
 import Spinner from "./Spinner";
+import Disclaimer from "./Disclaimer";
 
 const params = new URLSearchParams(window.location.search);
 const isPdf = params.get("pdf") === "true";
@@ -47,7 +48,7 @@ function App() {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = "cv.pdf";
+    a.download = "maciej-kalwa-cv.pdf";
     document.body.appendChild(a);
     a.click();
 
@@ -91,9 +92,16 @@ function App() {
           }
         >
           <div className="top-5 right-5 flex flex-wrap basis-auto grow-0 shrink-0 justify-between items-center pb-5 gap-5">
-            <h1 className="text-2xl lg:text-4xl pl-5">
-              Maciej Kałwa. Front&#8209;end&nbsp;developer.
-            </h1>
+            {isPdf ? (
+              <h1 className="font-bold text-2xl">
+                Maciej Kałwa. Front-end developer.
+              </h1>
+            ) : (
+              <h1 className="font-bold text-3xl lg:text-6xl pl-5">
+                Maciej Kałwa. Front&#8209;end&nbsp;developer.
+              </h1>
+            )}
+
             {isPdf ? null : (
               <div className="flex flex-wrap gap-5 items-center">
                 <a
@@ -141,6 +149,7 @@ function App() {
               <Passions />
             </Box>
           </Grid>
+          {isPdf ? <Disclaimer /> : null}
         </div>
       </QueryClientProvider>
     </MainContext.Provider>

@@ -14,6 +14,8 @@ export default async function handler(req, res) {
     waitUntil: "networkidle0",
   });
 
+  await page.evaluateHandle("document.fonts.ready");
+
   const pdf = await page.pdf({
     format: "A4",
     printBackground: true,

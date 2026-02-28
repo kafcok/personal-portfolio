@@ -2,11 +2,15 @@ import { useContext } from "react";
 import { MainContext } from "../Contexts";
 import { useContact } from "../hooks/useGetData";
 import Spinner from "../Spinner";
+import { useTranslation } from "react-i18next";
+import SectionHeader from "../SectionHeader";
 
 export default function Contact() {
   const q_key = "contact";
-  const { lang } = useContext(MainContext);
+  const { lang, isPdf } = useContext(MainContext);
   const { isLoading, data, error } = useContact({ q_key, lang });
+  const { t } = useTranslation();
+  const siteURL = import.meta.env.VITE_SITE_URL;
 
   if (error) {
     return <p className="text-error">{error.message}</p>;
@@ -18,13 +22,18 @@ export default function Contact() {
 
   return (
     <>
-      <h2 className="text-2xl md:text-3xl font-bold mb-3">
-        {data?.[`header_${lang}`]}
-      </h2>
+      <SectionHeader text={data?.[`header_${lang}`]} />
       <div
         className="content"
         dangerouslySetInnerHTML={{ __html: data?.[`content_${lang}`] }}
       ></div>
+      <div>
+        {isPdf ? (
+          <a href={siteURL}>Personal Portfolio [LINK]</a>
+        ) : (
+          <button></button>
+        )}
+      </div>
     </>
   );
 }
