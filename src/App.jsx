@@ -124,28 +124,28 @@ function App() {
           </div>
 
           <Grid>
-            <Box gridArea="bio">
+            <Box gridArea="bio" pdfOrder={1}>
               <Bio />
             </Box>
-            <Box gridArea="tech">
+            <Box gridArea="tech" pdfOrder={3} pdfWidth={2}>
               <TechStack />
             </Box>
-            <Box gridArea="experience">
+            <Box gridArea="experience" pdfOrder={4} pdfWidth={2}>
               <Experience />
             </Box>
-            <Box gridArea="contact">
+            <Box gridArea="contact" pdfOrder={2}>
               <Contact />
             </Box>
-            <Box gridArea="strengths">
+            <Box gridArea="strengths" pdfOrder={7}>
               <Strengths />
             </Box>
-            <Box gridArea="education">
+            <Box gridArea="education" pdfOrder={5}>
               <Education />
             </Box>
-            <Box gridArea="language">
+            <Box gridArea="language" pdfOrder={6}>
               <Languages />
             </Box>
-            <Box gridArea="passions">
+            <Box gridArea="passions" pdfOrder={8}>
               <Passions />
             </Box>
           </Grid>

@@ -27,7 +27,7 @@ const SGrid = styled.div`
     `display: grid !important;
     grid-template-columns: 50% 50%  !important;
       grid-template-areas: none !important;
-      gap: 0;
+      gap: 15px;
       padding: 0px;
       background: white;
       color: black;

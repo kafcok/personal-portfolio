@@ -29,10 +29,10 @@ export default function Contact() {
       ></div>
       <div>
         {isPdf ? (
-          <a href={siteURL}>Personal Portfolio [LINK]</a>
-        ) : (
-          <button></button>
-        )}
+          <a href={siteURL} target="_blank" rel="noreferrer">
+            {t("Personal Portfolio [LINK]")}
+          </a>
+        ) : null}
       </div>
     </>
   );

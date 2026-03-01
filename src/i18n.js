@@ -20,6 +20,7 @@ i18n.use(initReactI18next).init({
         "Get PDF": "Get PDF",
         Responsibilities: "Responsibilities",
         present: "present",
+        "Personal Portfolio [LINK]": "Personal Portfolio [LINK]",
       },
     },
     pl: {
@@ -36,6 +37,7 @@ i18n.use(initReactI18next).init({
         "Get PDF": "Pobierz PDF",
         Responsibilities: "Obowiązki",
         present: "obecnie",
+        "Personal Portfolio [LINK]": "Portfolio zawodowe [LINK]",
       },
     },
   },

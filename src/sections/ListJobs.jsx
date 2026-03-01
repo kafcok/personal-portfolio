@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { formatMonthYear } from "../hooks/useLanguage";
-import { useEffect } from "react";
 import styled from "styled-components";
+import { useContext } from "react";
+import { MainContext } from "../Contexts";
 
 const SListResp = styled.ul`
   margin-bottom: 10px;
@@ -13,7 +14,8 @@ const SListResp = styled.ul`
       position: absolute;
       width: 4px;
       height: 4px;
-      top: 9px;
+      ${({ $isPdf }) => ($isPdf ? `top: 5px;` : `top: 11px;`)}
+      ${({ $isPdf }) => console.log($isPdf)}
       left: 0px;
       border-radius: 2px;
       background-color: currentColor;
@@ -29,15 +31,20 @@ const SJobItem = styled.li`
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  margin-bottom: 30px;
+  ${({ $isPdf }) => ($isPdf ? `margin-bottom: 10px;` : `margin-bottom: 30px;`)}
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-foreground);
-    padding-bottom: 40px;
+    ${({ $isPdf }) =>
+      $isPdf ? `padding-bottom: 15px;` : `padding-bottom: 40px;`}
   }
-  @container (min-width: 600px) {
-    grid-template-columns: 40% auto;
-  }
+
+  ${({ $isPdf }) =>
+    $isPdf
+      ? `grid-template-columns: 28% auto;`
+      : `@container (min-width: 600px) {
+        grid-template-columns: 40% auto;
+      }`}
 `;
 
 export default function ListJobs({ jobs }) {
@@ -52,6 +59,8 @@ export default function ListJobs({ jobs }) {
 
 const Job = function ({ job }) {
   const { t } = useTranslation();
+  const { isPdf } = useContext(MainContext);
+
   const {
     name,
     function_en,
@@ -69,15 +78,8 @@ const Job = function ({ job }) {
   const role = function_pl ?? function_en;
   const resp = responsibilities_pl ?? responsibilities_en;
 
-  //   useEffect(
-  //     function () {
-  //       console.log(resp);
-  //     },
-  //     [resp],
-  //   );
-
   return (
-    <SJobItem>
+    <SJobItem $isPdf={isPdf}>
       <div>
         <p className="text-accent capitalize">
           {startDateLabel} - {endDateLabel}
@@ -100,12 +102,13 @@ const Job = function ({ job }) {
 
 const ListResponsibilities = function ({ resp }) {
   const { t } = useTranslation();
+  const { isPdf } = useContext(MainContext);
   return (
     <>
       {resp.length > 0 ? (
         <div>
           <h3 className="text-accent">{t("Responsibilities")}:</h3>
-          <SListResp>
+          <SListResp $isPdf={isPdf}>
             {resp.map((item, key) => {
               return <li key={key}>{item}</li>;
             })}

@@ -1,16 +1,22 @@
-import { ReactNode, useContext } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { MainContext } from "./Contexts";
 
-const SBox = styled.div<{ $gridArea?: string }>`
+const SBox = styled.div`
   ${({ $gridArea }) => $gridArea && `grid-area: ${$gridArea};`}
-  /* background-color: var(--color-box); */
-  /* opacity: 0.5; */
-  /* overflow: hidden; */
   position: relative;
   z-index: 1;
+
+  ${({ $pdfOrder, $isPdf, $pdfWidth }) =>
+    $pdfOrder && $isPdf
+      ? `order: ${$pdfOrder};${$pdfWidth && `grid-column-start: span ${$pdfWidth};`}`
+      : ""}
+
+  ${({ $isPdf }) =>
+    !$isPdf &&
+    `
   backdrop-filter: blur(10px) hue-rotate(-10deg) saturate(60%) brightness(100%);
-  > .bg {
+    > .bg {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -20,19 +26,18 @@ const SBox = styled.div<{ $gridArea?: string }>`
     z-index: -1;
     opacity: 0.5;
   }
+  `}
 `;
 
-type BoxProps = {
-  children?: ReactNode;
-  gridArea?: string;
-};
-
-export default function Box({ children, gridArea }: BoxProps) {
+export default function Box({ children, gridArea, pdfOrder, pdfWidth }) {
   const { isPdf } = useContext(MainContext);
   return (
     <SBox
       className={isPdf ? `` : `px-8 py-5`}
       $gridArea={isPdf ? "" : gridArea}
+      $isPdf={isPdf}
+      $pdfOrder={pdfOrder}
+      $pdfWidth={pdfWidth}
     >
       <div className="bg rounded-xl" />
       <div className="min-h-0">
