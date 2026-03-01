@@ -5,6 +5,14 @@ export function useI18nSync() {
   useEffect(() => {
     const html = document.documentElement;
 
+    const params = new URLSearchParams(window.location.search);
+    const langFromUrl = params.get("lang");
+
+    if (langFromUrl && i18n.language !== langFromUrl) {
+      i18n.changeLanguage(langFromUrl);
+      html.lang = langFromUrl;
+    }
+
     const observer = new MutationObserver(() => {
       const lang = html.lang || "en";
       if (i18n.language !== lang) {

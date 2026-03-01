@@ -8,9 +8,14 @@ export default async function handler(req, res) {
     headless: true,
   });
 
+  const { lang } = req.body || {};
+  if (typeof req.body === "string") {
+    req.body = JSON.parse(req.body);
+  }
+  const language = lang || "en";
   const page = await browser.newPage();
 
-  await page.goto(`${process.env.SITE_URL}?pdf=true`, {
+  await page.goto(`${process.env.SITE_URL}?pdf=true&lang=${language}`, {
     waitUntil: "networkidle0",
   });
 

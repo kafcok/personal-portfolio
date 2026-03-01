@@ -15,7 +15,6 @@ const SListResp = styled.ul`
       width: 4px;
       height: 4px;
       ${({ $isPdf }) => ($isPdf ? `top: 5px;` : `top: 11px;`)}
-      ${({ $isPdf }) => console.log($isPdf)}
       left: 0px;
       border-radius: 2px;
       background-color: currentColor;

@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 
 const detectLanguage = () => {
+  const parameters = new URLSearchParams(window.location.search);
+  const urlLang = parameters.get("lang");
+  if (urlLang) return urlLang;
+
   const stored = localStorage.getItem("lang");
   if (stored) return stored;
 
   const sys = navigator.language.toLowerCase();
-
   return sys.startsWith("pl") ? "pl" : "en";
 };
 
