@@ -24,10 +24,10 @@ const SGrid = styled.div`
 
   ${({ $isPdf }) =>
     $isPdf &&
-    `display: block !important;
-    grid-template-columns: 1fr 1fr !important;
+    `display: grid !important;
+    grid-template-columns: 50% 50%  !important;
       grid-template-areas: none !important;
-      gap: 15px;
+      gap: 0;
       padding: 0px;
       background: white;
       color: black;
