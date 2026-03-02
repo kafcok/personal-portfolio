@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { IconFlagPoland, IconFlagUK } from "./Icons";
+import * as Icon from "./Icons";
 // import { useTranslation } from "react-i18next";
 import { MainContext } from "./Contexts";
 
@@ -11,7 +11,7 @@ export default function LanguageToggle() {
 
   useEffect(
     function () {
-      setEmote(lang?.includes("pl") ? <IconFlagUK /> : <IconFlagPoland />);
+      setEmote(lang?.includes("pl") ? <Icon.En /> : <Icon.Pl />);
     },
     [lang, setEmote],
   );

@@ -3,6 +3,8 @@ import { MainContext } from "../Contexts";
 import { useTechStack } from "../hooks/useGetData";
 import Spinner from "../Spinner";
 import SectionHeader from "../SectionHeader";
+import * as Icon from "../Icons";
+import StarsGrade from "../StarsGrade";
 
 export default function TechStack() {
   const q_key = "tech";
@@ -19,12 +21,12 @@ export default function TechStack() {
     [data],
   );
 
-  useEffect(
-    function () {
-      // console.log(skills);
-    },
-    [skills],
-  );
+  // useEffect(
+  //   function () {
+  //     console.log(skills);
+  //   },
+  //   [skills],
+  // );
 
   if (error) {
     return <p className="text-error">{error.message}</p>;
@@ -36,13 +38,17 @@ export default function TechStack() {
 
   return (
     <>
-      <SectionHeader text={data?.[`header_${lang}`]} />
+      <SectionHeader
+        text={data?.[`header_${lang}`]}
+        icon={<Icon.Tech cls_hlp="ml-3 w-[30px] h-[30px]" />}
+      />
       {skills.length > 0 ? (
         <ul>
-          {skills.map(function (item) {
+          {skills.map(function (item, key) {
             return (
               <li key={item.id}>
-                {item.label} {item.level}
+                {item.icon ? Icon.render(item.icon, "w-4 h-4 mr-3") : null}
+                {item.label} <StarsGrade level={item.level} delay={key} />
               </li>
             );
           })}

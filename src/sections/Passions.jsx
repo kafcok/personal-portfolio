@@ -6,6 +6,7 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import Spinner from "../Spinner";
 import SectionHeader from "../SectionHeader";
+import * as Icon from "../Icons";
 
 const SPassionsList = styled.ul`
   display: flex;

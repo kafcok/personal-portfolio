@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "./hooks/useTheme";
-import { IconCrescentMoon, IconSun } from "./Icons";
+import * as Icon from "./Icons";
 
 export default function ThemeToggle() {
   const { theme, toggle } = useTheme();
@@ -13,11 +13,11 @@ export default function ThemeToggle() {
     >
       {theme === "dark" ? (
         <>
-          <IconCrescentMoon /> {t("dark")}
+          <Icon.Moon /> {t("dark")}
         </>
       ) : (
         <>
-          <IconSun /> {t("light")}
+          <Icon.Sun /> {t("light")}
         </>
       )}
     </button>

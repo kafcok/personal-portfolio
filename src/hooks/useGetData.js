@@ -43,7 +43,7 @@ export function useTechStack({ q_key, lang }) {
       .select(
         `
         header_${lang},
-        tech_skills(id, image, level, label)
+        tech_skills(id, icon, level, label)
         `,
       )
       .limit(1)

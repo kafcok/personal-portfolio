@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import ListSchools from "./ListSchools";
 import Spinner from "../Spinner";
 import SectionHeader from "../SectionHeader";
+import * as Icon from "../Icons";
 
 export default function Education() {
   const q_key = "education";

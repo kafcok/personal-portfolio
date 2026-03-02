@@ -3,6 +3,7 @@ import { MainContext } from "../Contexts";
 import { useStrengths } from "../hooks/useGetData";
 import Spinner from "../Spinner";
 import SectionHeader from "../SectionHeader";
+import * as Icon from "../Icons";
 
 export default function Strengths() {
   const q_key = "strengths";

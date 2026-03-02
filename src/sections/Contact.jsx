@@ -4,6 +4,7 @@ import { useContact } from "../hooks/useGetData";
 import Spinner from "../Spinner";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "../SectionHeader";
+import * as Icon from "../Icons";
 
 export default function Contact() {
   const q_key = "contact";

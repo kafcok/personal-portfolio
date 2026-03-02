@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import ListJobs from "./ListJobs";
 import Spinner from "../Spinner";
 import SectionHeader from "../SectionHeader";
+import * as Icon from "../Icons";
 
 export default function Experience() {
   const q_key = "experience";
