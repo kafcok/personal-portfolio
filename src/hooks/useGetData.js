@@ -46,6 +46,7 @@ export function useTechStack({ q_key, lang }) {
         tech_skills(id, icon, level, label)
         `,
       )
+      .order("label", { referencedTable: "tech_skills", ascending: true })
       .limit(1)
       .single();
     if (error) {

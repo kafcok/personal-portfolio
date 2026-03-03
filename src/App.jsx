@@ -109,7 +109,14 @@ function App() {
             )}
 
             {isPdf ? null : (
-              <div className="flex flex-wrap gap-5 items-center">
+              <div
+                className="flex flex-wrap gap-5 items-center py-3 px-7 rounded-xl"
+                style={{
+                  backgroundColor:
+                    "color-mix(in srgb, var(--color-box) 60%, transparent)",
+                  backdropFilter: "blur(8px)",
+                }}
+              >
                 <a
                   href="/"
                   className="underline hover:no-underline text-nowrap"
