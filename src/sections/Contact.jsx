@@ -23,7 +23,10 @@ export default function Contact() {
 
   return (
     <>
-      <SectionHeader text={data?.[`header_${lang}`]} />
+      <SectionHeader
+        text={data?.[`header_${lang}`]}
+        icon={<Icon.Contact cls_hlp="ml-3 w-[30px] h-[30px]" />}
+      />
       <div
         className="content"
         dangerouslySetInnerHTML={{ __html: data?.[`content_${lang}`] }}

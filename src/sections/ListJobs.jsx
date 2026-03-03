@@ -80,7 +80,7 @@ const Job = function ({ job }) {
   return (
     <SJobItem $isPdf={isPdf}>
       <div>
-        <p className="text-accent capitalize">
+        <p className="text-accent capitalize font-bold">
           {startDateLabel} - {endDateLabel}
         </p>
         <h2>{role}</h2>
@@ -106,7 +106,7 @@ const ListResponsibilities = function ({ resp }) {
     <>
       {resp.length > 0 ? (
         <div>
-          <h3 className="text-accent">{t("Responsibilities")}:</h3>
+          <h3 className="text-accent font-bold">{t("Responsibilities")}:</h3>
           <SListResp $isPdf={isPdf}>
             {resp.map((item, key) => {
               return <li key={key}>{item}</li>;

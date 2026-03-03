@@ -5,6 +5,22 @@ import Spinner from "../Spinner";
 import SectionHeader from "../SectionHeader";
 import * as Icon from "../Icons";
 import StarsGrade from "../StarsGrade";
+import styled from "styled-components";
+
+const SList = styled.ul`
+  font-size: 18px;
+  > li {
+    margin-bottom: 5px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: nowrap;
+    > .label {
+      flex: 1 0 50%;
+      max-width: 100px;
+    }
+  }
+`;
 
 export default function TechStack() {
   const q_key = "tech";
@@ -43,16 +59,17 @@ export default function TechStack() {
         icon={<Icon.Tech cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
       {skills.length > 0 ? (
-        <ul>
+        <SList>
           {skills.map(function (item, key) {
             return (
               <li key={item.id}>
-                {item.icon ? Icon.render(item.icon, "w-4 h-4 mr-3") : null}
-                {item.label} <StarsGrade level={item.level} delay={key} />
+                {item.icon ? Icon.render(item.icon, "w-6 h-6") : null}
+                <span className="label">{item.label}</span>{" "}
+                <StarsGrade level={item.level} delay={key} />
               </li>
             );
           })}
-        </ul>
+        </SList>
       ) : (
         ""
       )}

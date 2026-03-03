@@ -94,7 +94,7 @@ function App() {
           className={
             isPdf
               ? `pdf-layout`
-              : `relative text-foreground transition-colors p-5 flex flex-col min-h-screen futura-bg`
+              : `relative text-foreground transition-colors py-5 px-2 md:px-5 flex flex-col min-h-screen futura-bg`
           }
         >
           <div className="top-5 right-5 flex flex-wrap basis-auto grow-0 shrink-0 justify-between items-center pb-5 gap-5">
@@ -137,7 +137,10 @@ function App() {
           </div>
 
           <Grid>
-            <Box gridArea="bio" pdfOrder={1}>
+            <Box gridArea="contact" pdfOrder={1}>
+              <Contact />
+            </Box>
+            <Box gridArea="bio" pdfOrder={2}>
               <Bio />
             </Box>
             <Box gridArea="tech" pdfOrder={3} pdfWidth={2}>
@@ -146,14 +149,11 @@ function App() {
             <Box gridArea="experience" pdfOrder={4} pdfWidth={2}>
               <Experience />
             </Box>
-            <Box gridArea="contact" pdfOrder={2}>
-              <Contact />
+            <Box gridArea="education" pdfOrder={5}>
+              <Education />
             </Box>
             <Box gridArea="strengths" pdfOrder={7}>
               <Strengths />
-            </Box>
-            <Box gridArea="education" pdfOrder={5}>
-              <Education />
             </Box>
             <Box gridArea="language" pdfOrder={6}>
               <Languages />

@@ -42,7 +42,10 @@ export default function Passions() {
 
   return (
     <>
-      <SectionHeader text={data?.[`header_${lang}`]} />
+      <SectionHeader
+        text={data?.[`header_${lang}`]}
+        icon={<Icon.Heart cls_hlp="ml-3 w-[30px] h-[30px]" />}
+      />
       <SPassionsList>
         {data?.passions_items?.map((item) => {
           return (

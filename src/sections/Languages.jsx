@@ -20,7 +20,10 @@ export default function Languages() {
 
   return (
     <>
-      <SectionHeader text={data?.[`header_${lang}`]} />
+      <SectionHeader
+        text={data?.[`header_${lang}`]}
+        icon={<Icon.Lang cls_hlp="ml-3 w-[30px] h-[30px]" />}
+      />
       <ul>
         {data?.languages_items.map((item) => {
           return (

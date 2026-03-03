@@ -33,7 +33,10 @@ export default function Education() {
 
   return (
     <>
-      <SectionHeader text={data?.[`header_${lang}`]} />
+      <SectionHeader
+        text={data?.[`header_${lang}`]}
+        icon={<Icon.Edu cls_hlp="ml-3 w-[30px] h-[30px]" />}
+      />
       <ListSchools schools={schools} />
     </>
   );

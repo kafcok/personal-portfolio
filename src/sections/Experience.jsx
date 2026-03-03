@@ -33,7 +33,10 @@ export default function Experience() {
 
   return (
     <>
-      <SectionHeader text={data?.[`header_${lang}`]} />
+      <SectionHeader
+        text={data?.[`header_${lang}`]}
+        icon={<Icon.Experience cls_hlp="ml-3 w-[30px] h-[30px]" />}
+      />
       <ListJobs jobs={jobs} />
     </>
   );

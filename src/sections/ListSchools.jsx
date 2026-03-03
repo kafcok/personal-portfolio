@@ -51,7 +51,7 @@ const School = function ({ school }) {
   return (
     <SSchoolItem>
       <div>
-        <p className="text-accent capitalize">
+        <p className="text-accent capitalize font-bold">
           {startDateLabel} - {endDateLabel}
         </p>
         <h2>{name}</h2>

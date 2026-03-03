@@ -4,14 +4,30 @@ import styled from "styled-components";
 const SGrade = styled.div`
   display: inline-flex;
   flex-wrap: nowrap;
-  gap: 2px;
+  gap: 4px;
 `;
 const SStar = styled.div`
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
+  background-image: url("/icons/star-empty.svg");
+  background-size: contain;
+  background-position: center;
+  position: relative;
 
   ${({ $isFull }) =>
-    $isFull ? `background-color: green;` : `background-color: red;`}
+    $isFull &&
+    `
+    &:before{
+      content:'';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background-image: url("/icons/star-full.svg");
+      background-size: contain;
+      background-position: center;
+      z-index: -1;
+    }
+  `}
 `;
 
 export default function StarsGrade({ level, delay }) {

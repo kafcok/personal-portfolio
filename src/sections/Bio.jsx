@@ -4,6 +4,14 @@ import { useBio } from "../hooks/useGetData";
 import Spinner from "../Spinner";
 import SectionHeader from "../SectionHeader";
 import * as Icon from "../Icons";
+import styled from "styled-components";
+
+const SContent = styled.div`
+  span {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+`;
 
 export default function Bio() {
   const q_key = "bio";
@@ -14,7 +22,7 @@ export default function Bio() {
   useEffect(
     function () {
       let temp = data?.[`description_${lang}`];
-      if (isPdf) {
+      if (isPdf && !isLoading) {
         temp.replace("&#8209;", "-");
       }
       setBioContent({ __html: temp });
@@ -36,7 +44,7 @@ export default function Bio() {
         text={data?.[`header_${lang}`]}
         icon={<Icon.Info cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
-      <div dangerouslySetInnerHTML={bioContent} />
+      <SContent dangerouslySetInnerHTML={bioContent} />
     </>
   );
 }
