@@ -13,8 +13,11 @@ const SStar = styled.div`
   background-size: contain;
   background-position: center;
   position: relative;
+  transition: transform 0.3s ease-in-out ${({ $delay }) => $delay * 0.1}s;
+  ${({ $isVisible }) =>
+    $isVisible ? `transform: scale(1);` : `transform: scale(0);`}
 
-  ${({ $isFull }) =>
+  ${({ $isFull, $isVisible, $delay }) =>
     $isFull &&
     `
     &:before{
@@ -26,22 +29,31 @@ const SStar = styled.div`
       background-size: contain;
       background-position: center;
       z-index: -1;
+      transition: transform 0.3s ease-in-out ${$delay * 0.1 + 0.3}s;
+      transform: ${$isVisible ? "scale(1)" : "scale(0)"};
     }
   `}
 `;
 
-export default function StarsGrade({ level, delay }) {
+export default function StarsGrade({ level, isVisible }) {
   const [stars, setStars] = useState([]);
 
   useEffect(
     function () {
       let temp = [];
       for (let i = 0; i < 5; i++) {
-        temp.push(<SStar key={i} $isFull={level > i} />);
+        temp.push(
+          <SStar
+            key={i}
+            $isFull={level > i}
+            $delay={i}
+            $isVisible={isVisible}
+          />,
+        );
       }
       setStars(temp);
     },
-    [level],
+    [level, isVisible],
   );
 
   return (

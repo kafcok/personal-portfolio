@@ -6,6 +6,7 @@ import SectionHeader from "../SectionHeader";
 import * as Icon from "../Icons";
 import StarsGrade from "../StarsGrade";
 import styled from "styled-components";
+import { useObserver } from "../hooks/useObserver";
 
 const SList = styled.ul`
   font-size: 18px;
@@ -20,6 +21,11 @@ const SList = styled.ul`
       max-width: 100px;
     }
   }
+`;
+
+const SSkill = styled.li`
+  transition: all 0.3s linear;
+  ${({ $isVisible }) => ($isVisible ? `opacity: 1;` : `opacity: 0;`)}
 `;
 
 export default function TechStack() {
@@ -61,18 +67,24 @@ export default function TechStack() {
       {skills.length > 0 ? (
         <SList>
           {skills.map(function (item, key) {
-            return (
-              <li key={item.id}>
-                {item.icon ? Icon.render(item.icon, "w-6 h-6") : null}
-                <span className="label">{item.label}</span>{" "}
-                <StarsGrade level={item.level} delay={key} />
-              </li>
-            );
+            return <Skill key={item.id} item={item} index={key} />;
           })}
         </SList>
       ) : (
         ""
       )}
     </>
+  );
+}
+
+function Skill({ item }) {
+  const [ref, isVisible] = useObserver({ threshold: 1 });
+
+  return (
+    <SSkill ref={ref} $isVisible={isVisible}>
+      {item.icon ? Icon.render(item.icon, "w-6 h-6") : null}
+      <span className="label">{item.label}</span>
+      <StarsGrade level={item.level} isVisible={isVisible} />
+    </SSkill>
   );
 }

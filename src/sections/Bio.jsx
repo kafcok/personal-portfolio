@@ -27,7 +27,7 @@ export default function Bio() {
       }
       setBioContent({ __html: temp });
     },
-    [data, isPdf, lang],
+    [data, isPdf, lang, isLoading],
   );
 
   if (error) {
