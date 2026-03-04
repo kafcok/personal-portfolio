@@ -5,11 +5,19 @@ export function useObserver(options) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsVisible(entry.isIntersecting);
+    const observer = new IntersectionObserver(([entry], observer) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+
+        observer.unobserve(entry.target);
+      }
     }, options);
 
-    if (ref.current) observer.observe(ref.current);
+    const current = ref.current;
+
+    if (current) {
+      observer.observe(current);
+    }
 
     return () => observer.disconnect();
   }, [options]);

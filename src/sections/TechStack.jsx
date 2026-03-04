@@ -7,6 +7,7 @@ import * as Icon from "../Icons";
 import StarsGrade from "../StarsGrade";
 import styled from "styled-components";
 import { useObserver } from "../hooks/useObserver";
+import { useTranslation } from "react-i18next";
 
 const SList = styled.ul`
   font-size: 18px;
@@ -31,24 +32,12 @@ const SSkill = styled.li`
 export default function TechStack() {
   const q_key = "tech";
   const { lang } = useContext(MainContext);
-  const { isLoading, data, error, status } = useTechStack({ q_key, lang });
-  const [skills, setSkills] = useState([]);
-
-  useEffect(
-    function () {
-      if (data) {
-        setSkills(data.tech_skills);
-      }
-    },
-    [data],
-  );
-
-  // useEffect(
-  //   function () {
-  //     console.log(skills);
-  //   },
-  //   [skills],
-  // );
+  const { t } = useTranslation();
+  const { isLoading, header, primary, secondary, tertiary, error } =
+    useTechStack({
+      q_key,
+      lang,
+    });
 
   if (error) {
     return <p className="text-error">{error.message}</p>;
@@ -61,17 +50,32 @@ export default function TechStack() {
   return (
     <>
       <SectionHeader
-        text={data?.[`header_${lang}`]}
+        text={header}
         icon={<Icon.Tech cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
-      {skills.length > 0 ? (
+      {primary?.length > 0 && (
         <SList>
-          {skills.map(function (item, key) {
+          <h4 className="mb-2">{t("Primary")}:</h4>
+          {primary.map(function (item, key) {
             return <Skill key={item.id} item={item} index={key} />;
           })}
         </SList>
-      ) : (
-        ""
+      )}
+      {secondary?.length > 0 && (
+        <SList>
+          <h4 className="mt-5 mb-2">{t("Secondary")}:</h4>
+          {secondary.map(function (item, key) {
+            return <Skill key={item.id} item={item} index={key} />;
+          })}
+        </SList>
+      )}
+      {tertiary?.length > 0 && (
+        <SList>
+          <h4 className="mt-5 mb-2">{t("Additional")}:</h4>
+          {tertiary.map(function (item, key) {
+            return <Skill key={item.id} item={item} index={key} />;
+          })}
+        </SList>
       )}
     </>
   );

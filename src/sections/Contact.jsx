@@ -28,7 +28,7 @@ export default function Contact() {
         icon={<Icon.Contact cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
       <div
-        className="content"
+        className="content text-lg font-bold text-accent"
         dangerouslySetInnerHTML={{ __html: data?.[`content_${lang}`] }}
       ></div>
       <div>

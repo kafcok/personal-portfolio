@@ -19,6 +19,7 @@ export function useBio({ q_key, lang }) {
     const { data, error } = await supabase
       .from(q_key)
       .select(`header_${lang}, description_${lang}`)
+      .eq("published", true)
       .order("created_at", { ascending: false })
       .limit(1)
       .single();
@@ -43,7 +44,7 @@ export function useTechStack({ q_key, lang }) {
       .select(
         `
         header_${lang},
-        tech_skills(id, icon, level, label)
+        tech_skills(id, icon, level, label, category)
         `,
       )
       .order("label", { referencedTable: "tech_skills", ascending: true })
@@ -52,9 +53,27 @@ export function useTechStack({ q_key, lang }) {
     if (error) {
       throw new Error(`"error loading" ${q_key}`);
     }
-    return data;
+    const skills = data.tech_skills ?? [];
+    const primary = skills.filter((s) => s.category === 1);
+    const secondary = skills.filter((s) => s.category === 2);
+    const tertiary = skills.filter((s) => s.category === 3);
+
+    return {
+      header: data[`header_${lang}`],
+      primary,
+      secondary,
+      tertiary,
+    };
   }
-  return { isLoading, data, error, status };
+  return {
+    isLoading,
+    header: data?.header,
+    primary: data?.primary ?? [],
+    secondary: data?.secondary ?? [],
+    tertiary: data?.tertiary ?? [],
+    error,
+    status,
+  };
 }
 
 export function useExperience({ q_key, lang }) {
@@ -216,6 +235,7 @@ export function useStrengths({ q_key, lang }) {
         strengths_pros(id, name_${lang})
         `,
       )
+      .eq("strengths_pros.published", true)
       .limit(1)
       .single();
     if (error) {

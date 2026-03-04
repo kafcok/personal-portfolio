@@ -8,6 +8,7 @@ const SGrid = styled.div`
   flex: 1 1 auto;
   min-height: 0;
   gap: calc(var(--spacing) * 5);
+  width: 100%;
 
   @media (min-width: 1200px) {
     display: grid;

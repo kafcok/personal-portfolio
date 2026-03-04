@@ -28,6 +28,7 @@ import Passions from "./sections/Passions";
 import ModalWindow from "./ModalWindow";
 import Spinner from "./Spinner";
 import Disclaimer from "./Disclaimer";
+import SiteInfo from "./SiteInfo";
 
 const params = new URLSearchParams(window.location.search);
 const isPdf = params.get("pdf") === "true";
@@ -36,6 +37,7 @@ function App() {
   const { t } = useTranslation();
   const { lang, toggle } = useLanguage();
   const [pdfLoading, setPdfLoading] = useState(false);
+  const [siteInfo, setSiteInfo] = useState(false);
 
   async function handleGeneratePDF() {
     setPdfLoading(true);
@@ -81,6 +83,10 @@ function App() {
     toggle();
   };
 
+  const toggleSiteInfo = () => {
+    setSiteInfo(!siteInfo);
+  };
+
   return (
     <MainContext.Provider value={{ onLanguageToggle, lang, isPdf }}>
       <QueryClientProvider client={queryClient}>
@@ -88,6 +94,11 @@ function App() {
         {pdfLoading ? (
           <ModalWindow>
             <Spinner />
+          </ModalWindow>
+        ) : null}
+        {siteInfo ? (
+          <ModalWindow>
+            <SiteInfo onCloseHandler={toggleSiteInfo} />
           </ModalWindow>
         ) : null}
         <div
@@ -117,12 +128,12 @@ function App() {
                   backdropFilter: "blur(8px)",
                 }}
               >
-                <a
-                  href="/"
-                  className="underline hover:no-underline text-nowrap"
+                <button
+                  onClick={toggleSiteInfo}
+                  className="underline hover:no-underline text-nowrap cursor-pointer"
                 >
-                  👉{t("About this site")}👈
-                </a>
+                  {t("About this site")}
+                </button>
                 {/* <ThemeToggle /> */}
                 <LanguageToggle />
                 <button

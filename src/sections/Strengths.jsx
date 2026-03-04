@@ -4,6 +4,16 @@ import { useStrengths } from "../hooks/useGetData";
 import Spinner from "../Spinner";
 import SectionHeader from "../SectionHeader";
 import * as Icon from "../Icons";
+import styled from "styled-components";
+
+const SList = styled.ul`
+  > li {
+    margin-bottom: 10px;
+    padding-bottom: 2px;
+    border-bottom: dashed 1px var(--color-accent);
+    line-height: 1.1;
+  }
+`;
 
 export default function Strengths() {
   const q_key = "strengths";
@@ -35,11 +45,11 @@ export default function Strengths() {
         icon={<Icon.Bicep cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
       {strengths.length > 0 ? (
-        <ul>
+        <SList>
           {strengths.map(function (item) {
             return <li key={item.id}>{item?.[`name_${lang}`]}</li>;
           })}
-        </ul>
+        </SList>
       ) : (
         ""
       )}
