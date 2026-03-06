@@ -2,9 +2,10 @@
 @use "./variables" as *;
 @use "./fonts.scss";
 
-// body {
-// background: rgb(140, 79, 79);
-// }
+html,
+body {
+  overscroll-behavior: none;
+}
 
 html {
   scrollbar-width: thin;
