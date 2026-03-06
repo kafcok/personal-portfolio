@@ -10,6 +10,16 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--color-box) transparent;
   // background-color: var(--color-background);
+
+  &.futura-bg {
+    background-image: url("https://zxnaadmzzwarmoamojvz.supabase.co/storage/v1/object/public/portfolio-files/futuristic_background_light.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  &.dark.futura-bg {
+    background-image: url("https://zxnaadmzzwarmoamojvz.supabase.co/storage/v1/object/public/portfolio-files/futuristic_background_1920x1080.jpg");
+  }
 }
 
 .pdf-layout {
@@ -39,14 +49,4 @@ html {
   .no-print {
     display: none !important;
   }
-}
-
-.futura-bg {
-  background-image: url("https://zxnaadmzzwarmoamojvz.supabase.co/storage/v1/object/public/portfolio-files/futuristic_background_light.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-.dark .futura-bg {
-  background-image: url("https://zxnaadmzzwarmoamojvz.supabase.co/storage/v1/object/public/portfolio-files/futuristic_background_1920x1080.jpg");
 }

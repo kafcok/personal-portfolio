@@ -40,7 +40,8 @@ function App() {
   const [siteInfo, setSiteInfo] = useState(false);
 
   useEffect(() => {
-    document.body.classList.add("futura-bg");
+    document.documentElement.classList.add("futura-bg");
+    console.log(document);
   }, []);
 
   async function handleGeneratePDF() {
