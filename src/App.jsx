@@ -41,7 +41,6 @@ function App() {
 
   useEffect(() => {
     document.documentElement.classList.add("futura-bg");
-    console.log(document);
   }, []);
 
   async function handleGeneratePDF() {
@@ -141,13 +140,23 @@ function App() {
                 </button>
                 {/* <ThemeToggle /> */}
                 <LanguageToggle />
-                <button
+                {/* <button
                   onClick={handleGeneratePDF}
                   type="button"
                   className="cursor-pointer underline hover:no-underline text-nowrap"
                 >
                   📃 {t("Get PDF")}
-                </button>
+                </button> */}
+
+                {/* @todo - temporary static PDF */}
+                <a
+                  href="https://zxnaadmzzwarmoamojvz.supabase.co/storage/v1/object/public/portfolio-files/cv_maciej_kalwa.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cursor-pointer underline hover:no-underline text-nowrap"
+                >
+                  📃 {t("Get PDF")}
+                </a>
               </div>
             )}
           </div>

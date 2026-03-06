@@ -5,6 +5,13 @@ import Spinner from "../Spinner";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "../SectionHeader";
 import * as Icon from "../Icons";
+import styled from "styled-components";
+
+const SContact = styled.div`
+  a:hover {
+    text-decoration: underline;
+  }
+`;
 
 export default function Contact() {
   const q_key = "contact";
@@ -27,10 +34,10 @@ export default function Contact() {
         text={data?.[`header_${lang}`]}
         icon={<Icon.Contact cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
-      <div
+      <SContact
         className="content text-lg font-bold text-accent"
         dangerouslySetInnerHTML={{ __html: data?.[`content_${lang}`] }}
-      ></div>
+      ></SContact>
       <div>
         {isPdf ? (
           <a href={siteURL} target="_blank" rel="noreferrer">
