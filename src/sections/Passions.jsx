@@ -12,6 +12,8 @@ const SPassionsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  row-gap: 16px;
+  padding-bottom: 20px;
 
   > li {
     white-space: nowrap;

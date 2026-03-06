@@ -1,6 +1,6 @@
 import "tailwindcss";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import {
   QueryClient,
   QueryClientProvider,
@@ -38,6 +38,10 @@ function App() {
   const { lang, toggle } = useLanguage();
   const [pdfLoading, setPdfLoading] = useState(false);
   const [siteInfo, setSiteInfo] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.add("futura-bg");
+  }, []);
 
   async function handleGeneratePDF() {
     setPdfLoading(true);
@@ -105,7 +109,7 @@ function App() {
           className={
             isPdf
               ? `pdf-layout`
-              : `relative text-foreground transition-colors py-5 px-2 md:px-5 flex flex-col min-h-screen futura-bg`
+              : `relative text-foreground transition-colors py-5 px-2 md:px-5 flex flex-col min-h-screen`
           }
         >
           <div className="top-5 right-5 flex flex-wrap basis-auto grow-0 shrink-0 justify-between items-center pb-5 gap-5">

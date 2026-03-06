@@ -208,6 +208,10 @@ export function usePassions({ q_key, lang }) {
         passions_items(id, name_${lang}, image)
         `,
       )
+      .order("order", {
+        referencedTable: "passions_items",
+        ascending: true,
+      })
       .limit(1)
       .single();
     if (error) {
