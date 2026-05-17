@@ -76,7 +76,7 @@ function App() {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 3600 * 1000,
+            staleTime: 86400 * 1000,
           },
         },
       }),
