@@ -2,7 +2,7 @@ import * as Icon from "../Icons";
 import { formatMonthYear } from "../lib/formatMonthYear";
 import { translate } from "../lib/translations";
 
-function SectionHeader({ text, icon, isPdf }) {
+function SectionHeader({ text, icon }) {
   const label = typeof text === "string" ? text.trim() : text;
 
   return (
@@ -17,7 +17,7 @@ function SectionError({ message }) {
   return <p className="text-error">{message}</p>;
 }
 
-export function BioSection({ section, lang, isPdf }) {
+export function BioSection({ section, lang }) {
   if (section.error) return <SectionError message={section.error} />;
 
   const html = section.data?.[`description_${lang}`] ?? "";
@@ -25,27 +25,25 @@ export function BioSection({ section, lang, isPdf }) {
   return (
     <>
       <SectionHeader
-        isPdf={isPdf}
         text={section.data?.[`header_${lang}`]}
         icon={<Icon.Info cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
       <div
         className="server-bio"
         dangerouslySetInnerHTML={{
-          __html: isPdf ? html.replaceAll("&#8209;", "-") : html,
+          __html: html,
         }}
       />
     </>
   );
 }
 
-export function ContactSection({ section, lang, isPdf }) {
+export function ContactSection({ section, lang }) {
   if (section.error) return <SectionError message={section.error} />;
 
   return (
     <>
       <SectionHeader
-        isPdf={isPdf}
         text={section.data?.[`header_${lang}`]}
         icon={<Icon.Contact cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
@@ -53,28 +51,16 @@ export function ContactSection({ section, lang, isPdf }) {
         className="server-contact content text-lg font-bold text-accent"
         dangerouslySetInnerHTML={{ __html: section.data?.[`content_${lang}`] }}
       />
-      {isPdf ? (
-        <div>
-          <a
-            href={process.env.NEXT_PUBLIC_SITE_URL}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {translate(lang, "Personal Portfolio [LINK]")}
-          </a>
-        </div>
-      ) : null}
     </>
   );
 }
 
-export function TechStackSection({ section, lang, isPdf }) {
+export function TechStackSection({ section, lang }) {
   if (section.error) return <SectionError message={section.error} />;
 
   return (
     <>
       <SectionHeader
-        isPdf={isPdf}
         text={section.data?.header}
         icon={<Icon.Tech cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
@@ -129,7 +115,7 @@ function Stars({ level }) {
   );
 }
 
-export function ExperienceSection({ section, lang, isPdf }) {
+export function ExperienceSection({ section, lang }) {
   if (section.error) return <SectionError message={section.error} />;
 
   const jobs = section.data?.experience_jobs ?? [];
@@ -137,20 +123,19 @@ export function ExperienceSection({ section, lang, isPdf }) {
   return (
     <>
       <SectionHeader
-        isPdf={isPdf}
         text={section.data?.[`header_${lang}`]}
         icon={<Icon.Experience cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
       <ul className="server-jobs">
         {jobs.map((job) => (
-          <Job job={job} key={job.id} lang={lang} isPdf={isPdf} />
+          <Job job={job} key={job.id} lang={lang} />
         ))}
       </ul>
     </>
   );
 }
 
-function Job({ job, lang, isPdf }) {
+function Job({ job, lang }) {
   const role = job[`function_${lang}`];
   const responsibilities = job[`responsibilities_${lang}`] ?? [];
   const startDateLabel = formatMonthYear(job.start_date, lang);
@@ -158,7 +143,7 @@ function Job({ job, lang, isPdf }) {
     formatMonthYear(job.end_date, lang) || translate(lang, "present");
 
   return (
-    <li className={`server-job ${isPdf ? "pdf" : ""}`}>
+    <li className={`server-job`}>
       <div>
         <p className="text-accent capitalize font-bold">
           {startDateLabel} - {endDateLabel}
@@ -179,7 +164,7 @@ function Job({ job, lang, isPdf }) {
           <h3 className="text-accent font-bold">
             {translate(lang, "Responsibilities")}:
           </h3>
-          <ul className={`server-responsibilities ${isPdf ? "pdf" : ""}`}>
+          <ul className={`server-responsibilities`}>
             {responsibilities.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -190,7 +175,7 @@ function Job({ job, lang, isPdf }) {
   );
 }
 
-export function EducationSection({ section, lang, isPdf }) {
+export function EducationSection({ section, lang }) {
   if (section.error) return <SectionError message={section.error} />;
 
   const schools = section.data?.education_school ?? [];
@@ -198,7 +183,6 @@ export function EducationSection({ section, lang, isPdf }) {
   return (
     <>
       <SectionHeader
-        isPdf={isPdf}
         text={section.data?.[`header_${lang}`]}
         icon={<Icon.Edu cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
@@ -226,7 +210,7 @@ function School({ school, lang }) {
   );
 }
 
-export function StrengthsSection({ section, lang, isPdf }) {
+export function StrengthsSection({ section, lang }) {
   if (section.error) return <SectionError message={section.error} />;
 
   const strengths = section.data?.strengths_pros ?? [];
@@ -234,7 +218,6 @@ export function StrengthsSection({ section, lang, isPdf }) {
   return (
     <>
       <SectionHeader
-        isPdf={isPdf}
         text={section.data?.[`header_${lang}`]}
         icon={<Icon.Bicep cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
@@ -249,13 +232,12 @@ export function StrengthsSection({ section, lang, isPdf }) {
   );
 }
 
-export function LanguagesSection({ section, lang, isPdf }) {
+export function LanguagesSection({ section, lang }) {
   if (section.error) return <SectionError message={section.error} />;
 
   return (
     <>
       <SectionHeader
-        isPdf={isPdf}
         text={section.data?.[`header_${lang}`]}
         icon={<Icon.Lang cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
@@ -270,13 +252,12 @@ export function LanguagesSection({ section, lang, isPdf }) {
   );
 }
 
-export function PassionsSection({ section, lang, isPdf }) {
+export function PassionsSection({ section, lang }) {
   if (section.error) return <SectionError message={section.error} />;
 
   return (
     <>
       <SectionHeader
-        isPdf={isPdf}
         text={section.data?.[`header_${lang}`]}
         icon={<Icon.Heart cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
