@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-const detectLanguage = () => {
+const detectLanguage = (initialLang) => {
+  if (initialLang) return initialLang;
+
+  if (typeof window === "undefined") return "en";
+
   const parameters = new URLSearchParams(window.location.search);
   const urlLang = parameters.get("lang");
   if (urlLang) return urlLang;
@@ -12,8 +16,16 @@ const detectLanguage = () => {
   return sys.startsWith("pl") ? "pl" : "en";
 };
 
-export function useLanguage() {
-  const [lang, setLang] = useState(detectLanguage);
+export function useLanguage(initialLang) {
+  const [lang, setLang] = useState(initialLang || "en");
+
+  useEffect(() => {
+    if (initialLang) {
+      setLang(initialLang);
+    } else {
+      setLang(detectLanguage());
+    }
+  }, [initialLang]);
 
   useEffect(() => {
     document.documentElement.lang = lang;

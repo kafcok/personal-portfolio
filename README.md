@@ -1,8 +1,16 @@
-# React + Vite
+# Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Single-page portfolio/CV built with Next.js.
 
-Currently, two official plugins are available:
+## Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
+
+The app uses the Next App Router. The main page is rendered from `app/page.jsx`.
+Portfolio data is fetched on the server in parallel and passed into server-rendered
+section components, while `src/App.jsx` only keeps the interactive shell.

@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "styled-components";
 import Box from "./Box";
 import { useContext } from "react";
@@ -81,45 +83,28 @@ export default function SiteInfo({ onCloseHandler }) {
         <div className="content">
           {lang === "pl" ? (
             <>
-              <h4>Portfolio / CV — Single Page Application</h4>
+              <h4>Portfolio / CV - Next.js</h4>
               <p>
                 Strona osobista w formie interaktywnego portfolio i CV,
-                zbudowana jako <strong>Single Page Application</strong> w
-                oparciu o React z boilerplate <strong>Vite</strong>,
-                zapewniającym szybki development i zoptymalizowany build
-                produkcyjny. Aplikacja hostowana jest na platformie{" "}
-                <strong>Vercel</strong>, co gwarantuje błyskawiczne czasy
-                ładowania, automatyczny deployment przy każdym pushu na główną
-                gałąź oraz globalną dystrybucję przez CDN.
+                zbudowana na <strong>Next.js App Router</strong> i hostowana na{" "}
+                <strong>Vercel</strong>.
               </p>
               <p>
-                Dane (projekty, doświadczenie, umiejętności) pobierane są
-                dynamicznie z bazy <strong>Supabase</strong> przy użyciu{" "}
-                <strong>React Query</strong>, co gwarantuje efektywne
-                cachowanie, synchronizację stanu serwera oraz odświeżanie danych
-                bez przeładowania strony.
+                Tresci sekcji sa renderowane po stronie serwera. Dane z{" "}
+                <strong>Supabase</strong> pobierane sa rownolegle w komponencie
+                strony, co usuwa kaskade zapytan po stronie klienta.
               </p>
               <p>
-                Strona obsługuje wielojęzyczność - treści przechowywane są w
-                Supabase i serwowane per język, natomiast tłumaczenia elementów
-                interfejsu użytkownika obsługuje biblioteka{" "}
-                <strong>i18next</strong>, zapewniając płynne przełączanie wersji
-                językowych po stronie klienta.
+                Przelacznik jezyka zmienia parametr adresu URL, dzieki czemu
+                wybrana wersja jezykowa jest renderowana ponownie na serwerze.
               </p>
               <p>
-                Warstwa wizualna opiera się na <strong>Tailwind CSS v5</strong>{" "}
-                jako fundamencie systemu użytkowych klas, uzupełnionym o
-                komponentowe style pisane w <strong>Sass</strong>{" "}
-                z&nbsp;wykorzystaniem <strong>styled-components</strong> - co
-                daje pełną kontrolę nad izolacją stylów i spójność design
-                systemu.
+                Warstwa wizualna opiera sie na <strong>Tailwind CSS</strong>,{" "}
+                <strong>Sass</strong> i <strong>styled-components</strong>.
               </p>
               <p>
-                Dodatkową funkcjonalnością jest możliwość pobrania CV w formie
-                pliku <strong>PDF</strong> - dokument generowany jest po stronie
-                serwera przy użyciu <strong>Puppeteer</strong>, co zapewnia
-                pełną kontrolę nad wyglądem i formatowaniem eksportowanego
-                pliku.
+                Plik <strong>PDF</strong> jest generowany po stronie serwera z
+                wykorzystaniem <strong>Puppeteer</strong>.
               </p>
               <p>
                 <a
@@ -127,48 +112,35 @@ export default function SiteInfo({ onCloseHandler }) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  🔗 Repozytorium:{" "}
+                  Repository:{" "}
                   <strong>github.com/kafcok/personal-portfolio</strong>
                 </a>
               </p>
             </>
           ) : (
             <>
-              <h4>Portfolio / CV — Single Page Application</h4>
+              <h4>Portfolio / CV - Next.js</h4>
               <p>
-                A personal website in the form of an interactive portfolio and
-                CV, built as a <strong>Single Page Application</strong> powered
-                by React with a <strong>Vite</strong> boilerplate, providing
-                fast development experience and an optimized production build.
-                The application is hosted on <strong>Vercel</strong>, ensuring
-                lightning-fast load times, automatic deployment on every push to
-                the main branch, and global distribution via CDN.
+                A personal portfolio and CV built with the{" "}
+                <strong>Next.js App Router</strong> and hosted on{" "}
+                <strong>Vercel</strong>.
               </p>
               <p>
-                Data (projects, experience, skills) is fetched dynamically from
-                a <strong>Supabase</strong> database using{" "}
-                <strong>React Query</strong>, guaranteeing efficient caching,
-                server state synchronization, and data updates without page
-                reloads.
+                Section content is rendered on the server. Data from{" "}
+                <strong>Supabase</strong> is fetched in parallel by the page,
+                removing the previous client-side request waterfall.
               </p>
               <p>
-                The site supports multilingualism — content is stored in
-                Supabase and served per language, while UI translations are
-                handled by the <strong>i18next</strong> library, enabling smooth
-                client-side language switching.
+                The language switcher updates the URL parameter, so the selected
+                language is rendered again on the server.
               </p>
               <p>
-                The visual layer is built on <strong>Tailwind CSS v5</strong> as
-                the foundation of the utility class system, complemented by
-                component-level styles written in <strong>Sass</strong>{" "}
-                using&nbsp;<strong>styled-components</strong> — providing full
-                control over style isolation and design system consistency.
+                The visual layer uses <strong>Tailwind CSS</strong>,{" "}
+                <strong>Sass</strong>, and <strong>styled-components</strong>.
               </p>
               <p>
-                An additional feature is the ability to download the CV as a{" "}
-                <strong>PDF</strong> file - the document is generated
-                server-side using <strong>Puppeteer</strong>, ensuring full
-                control over the appearance and formatting of the exported file.
+                The <strong>PDF</strong> export is generated server-side with{" "}
+                <strong>Puppeteer</strong>.
               </p>
               <p>
                 <a
@@ -176,7 +148,7 @@ export default function SiteInfo({ onCloseHandler }) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  🔗 Repository:{" "}
+                  Repository:{" "}
                   <strong>github.com/kafcok/personal-portfolio</strong>
                 </a>
               </p>

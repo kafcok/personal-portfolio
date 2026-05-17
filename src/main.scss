@@ -1,6 +1,7 @@
 @use "tailwindcss";
 @use "./variables" as *;
 @use "./fonts.scss";
+@use "./sections/server-sections.scss";
 
 html,
 body {

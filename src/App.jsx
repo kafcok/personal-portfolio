@@ -1,47 +1,47 @@
-import "tailwindcss";
+"use client";
 
-import { useMemo, useState, useEffect } from "react";
-import {
-  QueryClient,
-  QueryClientProvider,
-  // useQuery,
-} from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-// import { createClient } from "@supabase/supabase-js";
-
-import { useI18nSync } from "./hooks/useI18nSync";
-import { useTranslation } from "react-i18next";
-// import ThemeToggle from "./ThemeToggle";
+import { useCallback, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import LanguageToggle from "./LanguageToggle";
-import Box from "./Box";
-import Grid from "./Grid";
-import Bio from "./sections/Bio";
-import TechStack from "./sections/TechStack";
 import { MainContext } from "./Contexts";
 import { useLanguage } from "./hooks/useLanguage";
-import Experience from "./sections/Experience";
-import Contact from "./sections/Contact";
-import Strengths from "./sections/Strengths";
-import Education from "./sections/Education";
-import Languages from "./sections/Languages";
-import Passions from "./sections/Passions";
 import ModalWindow from "./ModalWindow";
 import Spinner from "./Spinner";
-import Disclaimer from "./Disclaimer";
 import SiteInfo from "./SiteInfo";
+import { translate } from "./lib/translations";
 
-const params = new URLSearchParams(window.location.search);
-const isPdf = params.get("pdf") === "true";
-
-function App() {
-  const { t } = useTranslation();
-  const { lang, toggle } = useLanguage();
+function App({ initialIsPdf = false, initialLang, children }) {
+  const { lang, toggle } = useLanguage(initialLang);
   const [pdfLoading, setPdfLoading] = useState(false);
   const [siteInfo, setSiteInfo] = useState(false);
+  const isPdf = initialIsPdf;
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     document.documentElement.classList.add("futura-bg");
   }, []);
+
+  const navigateToLanguage = useCallback(
+    (nextLang, method = "push") => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("lang", nextLang);
+
+      if (isPdf) {
+        params.set("pdf", "true");
+      }
+
+      router[method](`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [isPdf, pathname, router, searchParams],
+  );
+
+  useEffect(() => {
+    if (!initialLang && lang !== "en") {
+      navigateToLanguage(lang, "replace");
+    }
+  }, [initialLang, lang, navigateToLanguage]);
 
   async function handleGeneratePDF() {
     setPdfLoading(true);
@@ -69,22 +69,10 @@ function App() {
     setPdfLoading(false);
   }
 
-  useI18nSync();
-
-  const queryClient = useMemo(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 86400 * 1000,
-          },
-        },
-      }),
-    [],
-  );
-
   const onLanguageToggle = () => {
+    const nextLang = lang === "pl" ? "en" : "pl";
     toggle();
+    navigateToLanguage(nextLang);
   };
 
   const toggleSiteInfo = () => {
@@ -93,103 +81,73 @@ function App() {
 
   return (
     <MainContext.Provider value={{ onLanguageToggle, lang, isPdf }}>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        {pdfLoading ? (
-          <ModalWindow>
-            <Spinner />
-          </ModalWindow>
-        ) : null}
-        {siteInfo ? (
-          <ModalWindow>
-            <SiteInfo onCloseHandler={toggleSiteInfo} />
-          </ModalWindow>
-        ) : null}
-        <div
-          className={
-            isPdf
-              ? `pdf-layout`
-              : `relative text-foreground transition-colors py-5 px-2 md:px-5 flex flex-col min-h-screen`
-          }
-        >
-          <div className="top-5 right-5 flex flex-wrap basis-auto grow-0 shrink-0 justify-between items-center pb-5 gap-5">
-            {isPdf ? (
-              <h1 className="font-bold text-2xl">
-                Maciej Kałwa. Front-end developer.
-              </h1>
-            ) : (
-              <h1 className="font-bold text-3xl lg:text-6xl pl-5">
-                Maciej Kałwa. Front&#8209;end&nbsp;developer.
-              </h1>
-            )}
+      {pdfLoading ? (
+        <ModalWindow>
+          <Spinner />
+        </ModalWindow>
+      ) : null}
+      {siteInfo ? (
+        <ModalWindow>
+          <SiteInfo onCloseHandler={toggleSiteInfo} />
+        </ModalWindow>
+      ) : null}
+      <div
+        className={
+          isPdf
+            ? `pdf-layout`
+            : `relative text-foreground transition-colors py-5 px-2 md:px-5 flex flex-col min-h-screen`
+        }
+      >
+        <div className="top-5 right-5 flex flex-wrap basis-auto grow-0 shrink-0 justify-between items-center pb-5 gap-5">
+          {isPdf ? (
+            <h1 className="font-bold text-2xl">
+              Maciej Kalwa. Front-end developer.
+            </h1>
+          ) : (
+            <h1 className="font-bold text-3xl lg:text-6xl pl-5">
+              Maciej Kalwa. Front&#8209;end&nbsp;developer.
+            </h1>
+          )}
 
-            {isPdf ? null : (
-              <div
-                className="flex flex-wrap gap-5 items-center py-3 px-7 rounded-xl"
-                style={{
-                  backgroundColor:
-                    "color-mix(in srgb, var(--color-box) 60%, transparent)",
-                  backdropFilter: "blur(8px)",
-                }}
+          {isPdf ? null : (
+            <div
+              className="flex flex-wrap gap-5 items-center py-3 px-7 rounded-xl"
+              style={{
+                backgroundColor:
+                  "color-mix(in srgb, var(--color-box) 60%, transparent)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              <button
+                onClick={toggleSiteInfo}
+                className="underline hover:no-underline text-nowrap cursor-pointer"
               >
-                <button
-                  onClick={toggleSiteInfo}
-                  className="underline hover:no-underline text-nowrap cursor-pointer"
-                >
-                  {t("About this site")}
-                </button>
-                {/* <ThemeToggle /> */}
-                <LanguageToggle />
-                {/* <button
-                  onClick={handleGeneratePDF}
-                  type="button"
-                  className="cursor-pointer underline hover:no-underline text-nowrap"
-                >
-                  📃 {t("Get PDF")}
-                </button> */}
+                {translate(lang, "About this site")}
+              </button>
+              <LanguageToggle />
+              {/* <button
+                onClick={handleGeneratePDF}
+                type="button"
+                className="cursor-pointer underline hover:no-underline text-nowrap"
+              >
+                PDF {translate(lang, "Get PDF")}
+              </button> */}
 
-                {/* @todo - temporary static PDF */}
-                <a
-                  href="https://zxnaadmzzwarmoamojvz.supabase.co/storage/v1/object/public/portfolio-files/cv_maciej_kalwa.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="cursor-pointer underline hover:no-underline text-nowrap"
-                >
-                  📃 {t("Get PDF")}
-                </a>
-              </div>
-            )}
-          </div>
-
-          <Grid>
-            <Box gridArea="contact" pdfOrder={1}>
-              <Contact />
-            </Box>
-            <Box gridArea="bio" pdfOrder={2}>
-              <Bio />
-            </Box>
-            <Box gridArea="tech" pdfOrder={3} pdfWidth={2}>
-              <TechStack />
-            </Box>
-            <Box gridArea="experience" pdfOrder={4} pdfWidth={2}>
-              <Experience />
-            </Box>
-            <Box gridArea="education" pdfOrder={5}>
-              <Education />
-            </Box>
-            <Box gridArea="strengths" pdfOrder={7}>
-              <Strengths />
-            </Box>
-            <Box gridArea="language" pdfOrder={6}>
-              <Languages />
-            </Box>
-            <Box gridArea="passions" pdfOrder={8}>
-              <Passions />
-            </Box>
-          </Grid>
-          {isPdf ? <Disclaimer /> : null}
+              {/* @todo - temporary static PDF */}
+              <a
+                href="https://zxnaadmzzwarmoamojvz.supabase.co/storage/v1/object/public/portfolio-files/cv_maciej_kalwa.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="cursor-pointer underline hover:no-underline text-nowrap"
+              >
+                PDF {translate(lang, "Get PDF")}
+              </a>
+            </div>
+          )}
         </div>
-      </QueryClientProvider>
+
+        {children}
+      </div>
     </MainContext.Provider>
   );
 }

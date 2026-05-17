@@ -1,3 +1,5 @@
+"use client";
+
 import { useContext } from "react";
 import styled from "styled-components";
 import { MainContext } from "./Contexts";
