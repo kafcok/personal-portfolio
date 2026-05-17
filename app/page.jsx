@@ -1,6 +1,6 @@
 import App from "../src/App";
-import Box from "../src/Box";
-import Grid from "../src/Grid";
+import Box from "../src/ServerBox";
+import Grid from "../src/ServerGrid";
 import { getPortfolioData } from "../src/lib/portfolioData";
 import Bio from "../src/sections/Bio";
 import Contact from "../src/sections/Contact";
@@ -26,29 +26,29 @@ export default async function Page({ searchParams }) {
 
   return (
     <App initialIsPdf={isPdf} initialLang={initialLang}>
-      <Grid>
-        <Box gridArea="contact" pdfOrder={1}>
+      <Grid isPdf={isPdf}>
+        <Box gridArea="contact" pdfOrder={1} isPdf={isPdf}>
           <Contact section={data.contact} lang={lang} isPdf={isPdf} />
         </Box>
-        <Box gridArea="bio" pdfOrder={2}>
+        <Box gridArea="bio" pdfOrder={2} isPdf={isPdf}>
           <Bio section={data.bio} lang={lang} isPdf={isPdf} />
         </Box>
-        <Box gridArea="tech" pdfOrder={3} pdfWidth={2}>
+        <Box gridArea="tech" pdfOrder={3} pdfWidth={2} isPdf={isPdf}>
           <TechStack section={data.tech} lang={lang} isPdf={isPdf} />
         </Box>
-        <Box gridArea="experience" pdfOrder={4} pdfWidth={2}>
+        <Box gridArea="experience" pdfOrder={4} pdfWidth={2} isPdf={isPdf}>
           <Experience section={data.experience} lang={lang} isPdf={isPdf} />
         </Box>
-        <Box gridArea="education" pdfOrder={5}>
+        <Box gridArea="education" pdfOrder={5} isPdf={isPdf}>
           <Education section={data.education} lang={lang} isPdf={isPdf} />
         </Box>
-        <Box gridArea="strengths" pdfOrder={7}>
+        <Box gridArea="strengths" pdfOrder={7} isPdf={isPdf}>
           <Strengths section={data.strengths} lang={lang} isPdf={isPdf} />
         </Box>
-        <Box gridArea="language" pdfOrder={6}>
+        <Box gridArea="language" pdfOrder={6} isPdf={isPdf}>
           <Languages section={data.languages} lang={lang} isPdf={isPdf} />
         </Box>
-        <Box gridArea="passions" pdfOrder={8}>
+        <Box gridArea="passions" pdfOrder={8} isPdf={isPdf}>
           <Passions section={data.passions} lang={lang} isPdf={isPdf} />
         </Box>
       </Grid>

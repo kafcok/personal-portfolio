@@ -1,0 +1,64 @@
+.server-grid {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: calc(var(--spacing) * 5);
+  width: 100%;
+  margin: 0 auto;
+  max-width: 500px;
+
+  @media (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    grid-template-areas:
+      "contact bio"
+      "tech experience"
+      "tech experience"
+      "strengths experience"
+      "strengths education"
+      "language education"
+      "language passions";
+
+    max-width: 1150px;
+  }
+
+  &.pdf {
+    display: grid !important;
+    grid-template-columns: 50% 50% !important;
+    grid-template-areas: none !important;
+    gap: 15px;
+    padding: 0;
+    background: white;
+    color: black;
+    max-width: none;
+  }
+}
+
+.server-box {
+  grid-area: var(--grid-area);
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px) hue-rotate(-10deg) saturate(60%) brightness(100%);
+
+  > .bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-box);
+    z-index: -1;
+    opacity: 0.5;
+  }
+
+  &.pdf {
+    order: var(--pdf-order);
+    grid-column-start: span var(--pdf-width, 1);
+    backdrop-filter: none;
+
+    > .bg {
+      display: none;
+    }
+  }
+}

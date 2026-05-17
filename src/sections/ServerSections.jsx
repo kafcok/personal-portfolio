@@ -3,11 +3,11 @@ import { formatMonthYear } from "../lib/formatMonthYear";
 import { translate } from "../lib/translations";
 
 function SectionHeader({ text, icon, isPdf }) {
+  const label = typeof text === "string" ? text.trim() : text;
+
   return (
-    <h2
-      className={`${isPdf ? "text-base" : "text-xl md:text-3xl mb-3"} font-bold whitespace-nowrap flex items-center`}
-    >
-      {text}
+    <h2 className="text-xl md:text-3xl mb-3 font-bold whitespace-nowrap flex items-center">
+      {label}
       <span className="inline-block">{icon}</span>
     </h2>
   );
@@ -78,7 +78,10 @@ export function TechStackSection({ section, lang, isPdf }) {
         text={section.data?.header}
         icon={<Icon.Tech cls_hlp="ml-3 w-[30px] h-[30px]" />}
       />
-      <SkillsList title={translate(lang, "Primary")} items={section.data?.primary} />
+      <SkillsList
+        title={translate(lang, "Primary")}
+        items={section.data?.primary}
+      />
       <SkillsList
         title={translate(lang, "Secondary")}
         items={section.data?.secondary}
@@ -97,16 +100,18 @@ function SkillsList({ title, items = [], className = "" }) {
   if (!items.length) return null;
 
   return (
-    <ul className={`server-skills ${className}`}>
+    <div className={className}>
       <h4 className="mb-2">{title}:</h4>
-      {items.map((item) => (
-        <li key={item.id}>
-          {item.icon ? Icon.render(item.icon, "w-6 h-6") : null}
-          <span className="label">{item.label}</span>
-          <Stars level={item.level} />
-        </li>
-      ))}
-    </ul>
+      <ul className="server-skills">
+        {items.map((item) => (
+          <li key={item.id}>
+            {item.icon ? Icon.render(item.icon, "w-6 h-6") : null}
+            <span className="label">{item.label}</span>
+            <Stars level={item.level} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -149,7 +154,8 @@ function Job({ job, lang, isPdf }) {
   const role = job[`function_${lang}`];
   const responsibilities = job[`responsibilities_${lang}`] ?? [];
   const startDateLabel = formatMonthYear(job.start_date, lang);
-  const endDateLabel = formatMonthYear(job.end_date, lang) || translate(lang, "present");
+  const endDateLabel =
+    formatMonthYear(job.end_date, lang) || translate(lang, "present");
 
   return (
     <li className={`server-job ${isPdf ? "pdf" : ""}`}>
